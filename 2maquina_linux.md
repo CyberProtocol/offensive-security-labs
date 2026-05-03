@@ -9,8 +9,8 @@ máquina objetivo en la red.
 
 **Comando ejecutado:** ping 192.168.0.32
 
-![](media/image1.jpg){width="5.221527777777778in"
-height="5.1561111111111115in"}
+<img width="501" height="495" alt="image" src="https://github.com/user-attachments/assets/f52cbd96-6fb8-49c5-8650-e6d030ea4d17" />
+
 
 **Observaciones:**
 
@@ -36,8 +36,10 @@ expuestos y posibles vectores de entrada. **Comando ejecutado:** nmap
 
 **Puerto Servicio Versión**
 
-> ![](media/image2.png){width="7.073333333333333in"
-> height="3.67in"}22/tcp SSH OpenSSH 10.2 80/tcp HTTP Apache 2.4.66
+22/tcp SSH OpenSSH 10.2 80/tcp HTTP Apache 2.4.66
+
+<img width="679" height="352" alt="image" src="https://github.com/user-attachments/assets/8f553685-7ffe-4a39-8b4c-7b159018b977" />
+
 
 **Observaciones:**
 
@@ -56,6 +58,8 @@ Se utilizó **WhatWeb** para identificar tecnologías del servidor y
 orientar la auditoría.
 
 **Comando ejecutado:** whatweb http://alpine.
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/ec9550ed-f5af-4df4-bf19-4acfeabb2b31" />
+
 
 > **Observaciones:**
 
@@ -63,12 +67,12 @@ orientar la auditoría.
 
 - Tecnologías detectadas: HTML5, scripts y correos internos.
 
-- ![](media/image3.png){width="6.573333333333333in"
-  height="4.586666666666667in"}Se revisaron posibles APIs y endpoints,
+- Se revisaron posibles APIs y endpoints,
   pero **no se encontró información sensible ni recursos ocultos**.
+  
+  <img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/5cef9d1d-a317-4d17-9b96-8dfc0f6d9766" />
 
-> ![](media/image4.png){width="6.573333333333333in"
-> height="4.680001093613298in"}
+
 
 **Recomendaciones:**
 
@@ -86,13 +90,16 @@ rutas ocultas y paneles administrativos.
 ffuf -u http://alpine.nyx/FUZZ -w
 /usr/share/seclists/Discovery/WebContent/raft-small-directories.txt -c
 
+<img width="854" height="844" alt="image" src="https://github.com/user-attachments/assets/ac8d20e8-bec7-4d04-b1b1-a89c265dc822" />
+
+
 ffuf -u http://alpine.nyx/FUZZ -w
 /usr/share/seclists/Discovery/WebContent/small-words.txt -c
 
-![](media/image5.jpg){width="5.6958344269466314in"
-height="5.624444444444444in"}
+<img width="660" height="588" alt="image" src="https://github.com/user-attachments/assets/74b27344-0b31-407c-b082-2230c8c848c1" />
 
-![](media/image6.jpg){width="6.875in" height="6.125in"}
+
+
 
 **Observaciones:** • Se encontraron directorios: /password, /modules,
 /includes, /cache. • /server-status protegido (403).
@@ -112,18 +119,19 @@ height="5.624444444444444in"}
 
 Se obtuvieron credenciales de acceso filtradas:
 
+<img width="679" height="409" alt="image" src="https://github.com/user-attachments/assets/d863be72-4b7b-4535-b12b-fc8f04b58891" />
+
+
 Usuario: developer
 
 Host: alpine.nyx
 
-![](media/image7.png){width="7.073333333333333in"
-height="4.263333333333334in"}Password: SummerVibes2024!
+Password: SummerVibes2024!
 
 **Comando ejecutado:** ssh developer@alpine.nyx
 
-![](media/image8.png){width="7.073333333333333in"
-height="4.376666666666667in"}![](media/image9.png){width="7.073333333333333in"
-height="4.123333333333333in"}
+<img width="679" height="421" alt="image" src="https://github.com/user-attachments/assets/e92b4d1d-04f4-43e7-adb5-c84cf854264c" />
+
 
 **Observaciones:**
 
@@ -131,6 +139,9 @@ height="4.123333333333333in"}
 
 - Se revisaron archivos del home (~user.txt~, ~.ssh~) y **no se encontró
   contenido sensible adicional**.
+
+  <img width="679" height="396" alt="image" src="https://github.com/user-attachments/assets/fe58fd3e-5ac5-465d-a30b-50f8d831ab76" />
+
 
 **Recomendaciones:**
 
@@ -145,8 +156,10 @@ posibles vectores de escalamiento. **Comandos ejecutados:**
 
 ps aux sudo -l
 
-![](media/image10.png){width="7.073333333333333in"
-height="4.263333333333334in"}ls -la /home/developer /home/sysadmin
+ls -la /home/developer /home/sysadmin
+
+<img width="679" height="409" alt="image" src="https://github.com/user-attachments/assets/c1775c84-b943-4a74-8f9c-3d5ab53a9cb1" />
+
 
 **Observaciones:**
 
@@ -160,8 +173,9 @@ height="4.263333333333334in"}ls -la /home/developer /home/sysadmin
 
 **Recomendaciones:**
 
-- ![](media/image11.png){width="7.073333333333333in"
-  height="4.323333333333333in"}Monitorizar procesos y sesiones SSH
+<img width="1061" height="648" alt="image" src="https://github.com/user-attachments/assets/3febf4b2-fc42-4cd3-bb85-ba1eb65518db" />
+
+- Monitorizar procesos y sesiones SSH
   activas.
 
 # Recuperación de Clave SSH vía Git 
@@ -176,39 +190,41 @@ git log \--all \--pretty=oneline git show 02f9a18:id_rsa \>
 
 ssh -i \~/id_rsa_sysadmin sysadmin@localhost
 
+
+
 **Observaciones:**
 
 - Git permitió recuperar archivos borrados de commits anteriores.
 
 - Probado acceso como ~sysadmin~, **sin encontrar información sensible
   adicional**.
+  
+<img width="679" height="481" alt="image" src="https://github.com/user-attachments/assets/99ca40c2-2972-4d1e-b574-a13a639b2f37" />
+
 
 **Recomendaciones:**
 
 - No almacenar claves privadas en repositorios.
 
-- ![](media/image12.png){width="7.073333333333333in"
-  height="5.003333333333333in"}Auditar commits y eliminar información
+- Auditar commits y eliminar información
   sensible.
 
 # Acceso a Información Sensible y Escalamiento 
 
-Tras acceder como ~sysadmin~, se revisaron scripts y archivos críticos.
+Una vez dentro como sysadmin, se descubrió un script de limpieza
+automatizado en /opt/scripts/cleanup.sh, que se ejecutaba
+periódicamente a través de cron.
 
-**Comandos ejecutados:**
+Este script contenía una línea de
+código que leía archivos del directorio /root y los escribía en una
+ubicación temporal. 
 
-cat /home/sysadmin/NOTES.txt cat /opt/scripts/cleanup.sh cat
-/tmp/root_flag
-
-**Observaciones:**
-
-- ~NOTES.txt~ mostraba tareas completadas y pendientes.
-
+Aunque el script en sí no era directamente
+modicable por sysadmin, su comportamiento era predecible.
 - ~cleanup.sh~ contiene instrucciones para consolidar archivos de root.
 
-- ![](media/image13.png){width="7.073333333333333in"
-  height="5.596667760279965in"}Verificado ~/tmp/root_flag~ y **no se
-  encontró información crítica expuesta directamente**.
+- <img width="679" height="538" alt="image" src="https://github.com/user-attachments/assets/0795e7b3-7540-48d2-9588-57b2ca5bdb7d" />
+
 
 **Recomendaciones:**
 
