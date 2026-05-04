@@ -9,8 +9,8 @@ mediante prueba ICMP:
 
     ping 192.168.0.23
 
-![](media/image1.png){width="10.541666666666666in"
-height="4.299023403324584in"}
+<img width="1012" height="413" alt="image" src="https://github.com/user-attachments/assets/6733248c-c649-4c31-88d7-690b8f20b38d" />
+
 
 **Observaciones:**
 
@@ -26,7 +26,8 @@ Escaneo de puertos con detección de versiones y scripts básicos:
 
     nmap -sS --open -sC -sV -n -Pn 192.168.0.23
 
-![](media/image2.png){width="9.486910542432195in" height="4.71875in"}
+<img width="911" height="453" alt="image" src="https://github.com/user-attachments/assets/e38fe08b-900d-45ce-8bcc-a5ca379a5154" />
+
 
 **Servicios relevantes identificados:**
 
@@ -64,8 +65,8 @@ de desarrollo (F12) para detectar:
 - Posibles endpoints ocultos
 - APIs expuestas
 
-![](media/image3.png){width="7.392633420822397in"
-height="3.6770647419072615in"}
+<img width="710" height="353" alt="image" src="https://github.com/user-attachments/assets/2f65d2eb-7c0f-45ed-ab99-9ea4bf50f057" />
+
 
 **Resultado:** No se identificó información sensible.
 
@@ -80,13 +81,11 @@ Se realizó enumeración forzada usando `ffuf`:
 
     ffuf -u http://192.168.0.23/FUZZ -w /usr/share/wordlists/dirb/common.txt -e .zip,.bak,.old,.tar,.gz,.sql -fs 703
 
-![](media/image4.png){width="5.073443788276466in"
-height="3.2395833333333335in"}![](media/image5.png){width="5.042361111111111in"
-height="3.3848939195100614in"}
+<img width="487" height="311" alt="image" src="https://github.com/user-attachments/assets/3bd00782-ea8c-4050-816a-e34d754f063f" />
 
-![](media/image6.png){width="5.117994313210849in"
-height="3.026388888888889in"}![](media/image7.png){width="5.158605643044619in"
-height="3.144767060367454in"}
+
+<img width="484" height="325" alt="image" src="https://github.com/user-attachments/assets/24ed82bc-3361-4227-9096-21e2f918d256" />
+
 
 **Justificación profesional:**
 
@@ -100,8 +99,7 @@ height="3.144767060367454in"}
 
 - Detectado `groups.zip` como archivo accesible.
 
-![](media/image8.png){width="5.760416666666667in"
-height="3.3463265529308837in"}
+
 
 ------------------------------------------------------------------------
 
@@ -109,19 +107,22 @@ height="3.3463265529308837in"}
 
 Se descargó el archivo y se confirmó que estaba protegido:
 
-![](media/image9.png){width="5.770833333333333in"
-height="3.1465277777777776in"}
+<img width="553" height="321" alt="image" src="https://github.com/user-attachments/assets/1f4d5934-5fb7-4087-9a8a-ed5a9c2ece12" />
+
+
+
 
 Para obtener la contraseña:
 
 1.  Generación de hash con `zip2john`.
 2.  Crackeo con `John the Ripper` y wordlists (`rockyou.txt`).
 
-![](media/image10.png){width="5.806517935258093in"
-height="4.186805555555556in"}
+<img width="554" height="302" alt="image" src="https://github.com/user-attachments/assets/c8b436b7-9e30-4dad-b918-295f6ba69dca" />
 
-![](media/image11.png){width="5.572916666666667in"
-height="4.21722331583552in"}
+
+<img width="535" height="405" alt="image" src="https://github.com/user-attachments/assets/fb074c72-b973-433d-b4f5-e4a44a7f537e" />
+
+
 
 **REsultado:** contraseña recuperada y archivo `.tar` extraído.
 
@@ -139,8 +140,8 @@ Se utilizó `gpp-decrypt` para descifrar la contraseña de GPP:
 
     gpp-decrypt IwLNLy0Ck5xIlXEsPMTbOF1f/NnliQFKeGv139eUEgE
 
-![](media/image12.png){width="5.395833333333333in"
-height="2.356788057742782in"}
+<img width="518" height="226" alt="image" src="https://github.com/user-attachments/assets/68d2a564-e2b2-4849-8dab-ed7cf6562ae9" />
+
 
 **Resultado:**
 
@@ -156,9 +157,10 @@ credenciales:
 
     enum4linux -u XEROSEC -p 'GPP2k26blahblah' 192.168.0.23
 
-![](media/image13.png){width="6.197916666666667in"
-height="4.072222222222222in"} ![](media/image14.png){width="7.44375in"
-height="3.6247714348206475in"}
+<img width="595" height="391" alt="image" src="https://github.com/user-attachments/assets/95d9bdae-e168-4c8c-8e78-da499972f916" />
+
+<img width="715" height="348" alt="image" src="https://github.com/user-attachments/assets/b020bda8-2057-4169-9f32-2e0e05e956e1" />
+
 
 **Resultado profesional:**
 
@@ -176,8 +178,8 @@ Se verificó autenticación con `netexec` sobre la red local 0/24:
 
     netexec smb 192.168.0.0/24 -u XEROSEC -p 'GPP2k26blahblah'
 
-![](media/image15.png){width="7.820529308836395in"
-height="5.688888888888889in"}
+<img width="751" height="546" alt="image" src="https://github.com/user-attachments/assets/946fc262-a5d9-4cac-8411-20943b8d99bf" />
+
 
 **Interpretación profesional:**
 
@@ -189,7 +191,8 @@ height="5.688888888888889in"}
 **Pruebas manuales:** `net user`, listado de usuarios y grupos no
 arrojaron información adicional relevante.
 
-![](media/image16.png){width="6.84375in" height="5.207163167104112in"}
+<img width="657" height="500" alt="image" src="https://github.com/user-attachments/assets/f8922cc0-a019-4b15-8d74-108cd9ee9117" />
+
 
 ------------------------------------------------------------------------
 
@@ -200,13 +203,17 @@ sesión con `evil-winrm`:
 
     evil-winrm -i 192.168.0.23 -u XEROSEC -p 'GPP2k26blahblah'
 
-![](media/image17.png){width="11.581112204724409in"
-height="5.760396981627297in"}
+<img width="1112" height="553" alt="image" src="https://github.com/user-attachments/assets/e6995045-40f1-4cb4-b9c8-5fb557f34b63" />
+
 
 Verificación de contexto:
 
     whoami
     whoami /groups
+
+ <img width="1105" height="550" alt="image" src="https://github.com/user-attachments/assets/9d25498e-6f04-4a08-8197-fa32cd09a1b2" />
+  
+
 
 Usuario sin privilegios administrativos completos.
 
@@ -218,16 +225,16 @@ Se cargó y ejecutó WinPEAS para análisis profundo:
 
     upload winPEASx64.exe
     ./winPEASx64.exe
+    
+<img width="1132" height="563" alt="image" src="https://github.com/user-attachments/assets/5f57a831-a7b9-427d-9e2d-28d3c7050151" />
 
-![](media/image19.png){width="11.791666666666666in"
-height="5.865125765529309in"}
 
 **Resultado relevante:** variable de entorno con contraseña expuesta
 
     GigaAdmin123!
 
-![](media/image20.png){width="11.895833333333334in"
-height="5.284722222222222in"}
+<img width="1142" height="507" alt="image" src="https://github.com/user-attachments/assets/3730b5a0-3abd-4c19-a478-0f68b1e4daf7" />
+
 
 ------------------------------------------------------------------------
 
@@ -236,7 +243,7 @@ height="5.284722222222222in"}
 Se utilizó la contraseña expuesta para autenticarse como
 **Administrator**:
 
-![](media/image21.png){width="11.71875in" height="5.828857174103237in"}
+<img width="1125" height="560" alt="image" src="https://github.com/user-attachments/assets/1c5009a1-ff29-4bea-b7c7-b8ed8a76f608" />
 
 Verificación de privilegios:
 
