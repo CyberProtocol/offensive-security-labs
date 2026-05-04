@@ -1,14 +1,5 @@
-**Informe Técnico: Auditoría Máquina Linux MD (192.168.0.23)**
+**Informe Técnico: Auditoría Máquina Linux MD **
 
-La auditoría se ha realizado sobre la máquina Linux MD (192.168.0.23),
-un servidor Linux con servicios web, FTP y SSH accesibles desde la red.
-El objetivo fue identificar las vulnerabilidades de configuración,
-explotarlas para obtener acceso al sistema y escalar privilegios hasta
-el nivel root. Se añade información imprescindible faltante: comandos de
-enumeración estándar (LinPEAS/LinEnum), verificación de versiones
-exactas (OpenSSH 7.4p1-Debian típico), comandos de post-explotación
-(GTFOBins checks) y mitigaciones CVE relevantes (ej. CVE-2024-6387
-RegreSSHion en OpenSSH).
 
 **\[Descripción Técnica de la Red\]**
 
@@ -55,7 +46,8 @@ nmap -sS \--open -sC -sV -n -Pn 192.168.0.23
 
   - wp-config.php, wp-login.php, xmlrpc.php
 
-![](media/image1.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/53687f6b-5721-43a9-8dcf-8dc51815e2d7" />
+
 
 **Vulnerabilidad 1 -- FTP Anónimo**
 
@@ -91,7 +83,8 @@ credenciales, permitiendo al atacante:
 - Monitorear y registrar acceso FTP para detectar actividad anómala
   (/var/log/vsftpd.log).
 
-> ![](media/image2.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/29cc93d7-8e75-4165-a9c1-35f7a7b1750d" />
+
 
 **Vulnerabilidad 2 - Exposición de Información en WordPress**
 
@@ -103,7 +96,7 @@ configuración y estructura de WordPress\
 **Descripción técnica**:
 
 - El servidor web muestra un título y contenido genérico (\"MASTER D
-  TEST -- Test machine for MASTER D grade\").
+  TEST -- Test machine for MASTER D \").
 
 - El escaneo de Nmap revela que WordPress 5.2.3 está expuesto y
   accesible. **Añadido: WhatWeb confirma Apache 2.4.25, PHP 7.0.**
@@ -156,7 +149,8 @@ información sensible:\
 - Facilitar un ataque de fuerza bruta al panel de WordPress si el
   usuario WordPress existe también en el CMS.
 
-![](media/image3.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/65a9d55a-137d-4eef-b2db-8bbd88d52d1e" />
+
 
 **Validación de Credenciales y Descubrimiento de phpMyAdmin**
 
@@ -213,9 +207,10 @@ vulnerables.
 - Proteger el acceso con autenticación adicional y listas de control de
   acceso.
 
-> ![](media/image4.png){width="5.905555555555556in" height="2.9375in"}
->
-> ![](media/image5.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/202c472b-5d08-4e34-904a-54583a18dc9b" />
+
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/1723773b-4130-428a-9f8b-b0b6c7c11ca2" />
+
 
 **EXPLOTACIÓN DE LA WEB**
 
@@ -236,11 +231,12 @@ vulnerable revelando:**
 **Impacto técnico**: Obtención directa de credenciales válidas del
 sistema de autenticación WordPress facilitando ataques posteriores.
 
-![](media/image6.png){width="5.905555555555556in"
-height="2.936111111111111in"}
+<img width="886" height="487" alt="image" src="https://github.com/user-attachments/assets/39aaf920-ac59-4600-9cbe-42e47c3d6cdf" />
 
-![](media/image7.png){width="5.905555555555556in"
-height="3.247916666666667in"}
+<img width="886" height="440" alt="image" src="https://github.com/user-attachments/assets/3c36826d-fdcb-4c47-b33e-bcaf60ef8bc4" />
+
+
+
 
 **Acceso Exitoso al Panel de WordPress**
 
@@ -261,13 +257,14 @@ confirmando http://192.168.0.23/wp-login/.
 plugins maliciosos, subida de archivos PHP y modificación del contenido
 del sitio.
 
-![](media/image8.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/0eb8e392-22cc-4b10-8d12-a9ea87e4042c" />
+
 
 ![](media/image9.png){width="5.905555555555556in"
 height="3.3222222222222224in"}
 
-**3. Explotación de RCE mediante Metasploit (WordPress Admin Shell
-Upload)**
+<img width="886" height="498" alt="image" src="https://github.com/user-attachments/assets/8ed6cad8-bec9-4cf9-ba2d-3f7ce9483d5b" />
+
 
 Tras confirmar acceso administrativo (webmaster: kittykat1) se
 identificó que el entorno era vulnerable al
@@ -301,9 +298,11 @@ pendientes.**
 
 - Monitorear plugins/uploads.
 
-![](media/image10.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/2dc03816-a42c-41c9-90af-5a54c4d905fe" />
 
-![](media/image11.png){width="5.905555555555556in" height="2.9375in"}
+
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/ab110594-42b9-4f31-9a10-ff17096378fe" />
+
 
 **Post-Explotación Inicial y Enumeración de Privilegios**
 
@@ -355,7 +354,8 @@ sistema: **Añadido: cat /etc/passwd \| cut -d: -f1.**
 
 - Monitorear acceso a archivos de sistema desde contexto web.
 
-![](media/image12.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/7385e902-1d53-4561-b73b-6cecc40bb617" />
+
 
 **5. Escalada de Privilegios: www-data a Webmaster**
 
@@ -400,7 +400,8 @@ webmaster. **Exploit: sudo -u root /bin/bash.**
 
 - Implementar sudo con timeout y logs detallados (/var/log/auth.log).
 
-> ![](media/image13.png){width="5.905555555555556in" height="2.9375in"}
+><img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/9de1aee5-d1c3-45d1-9915-3fb4d82b2416" />
+}
 
 **Resumen de Vulnerabilidades**
 
