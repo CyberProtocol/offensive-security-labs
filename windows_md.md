@@ -1,13 +1,7 @@
-**Informe Técnico: Examen Ethical Hacking - Máquina Virtual Objetivo**
+**Informe Técnico: - Máquina Virtual Objetivo**
 
 Este informe técnico documenta de forma completa la auditoría de
-penetración realizada sobre la máquina virtual objetivo en el examen de
-Ethical Hacking. Se respeta íntegramente todo el contenido
-proporcionado, sin omitir ningún detalle, comando, resultado o análisis.
-Se corrigen únicamente las faltas de ortografía para profesionalidad en
-tu portfolio Red Team. Se dejan **espacios específicos para capturas de
-pantalla** en puntos clave.
-
+penetración realizada sobre la máquina virtual objetivo 
 ------------------------------------------------------------------------
 
 **Fase de Escaneo y Enumeración**
@@ -16,9 +10,8 @@ pantalla** en puntos clave.
 de ataque se realizó un escaneo de puertos sobre la máquina objetivo
 utilizando herramientas de reconocimiento**
 
-**\[**
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/38d9d716-6a19-4295-bd38-4c7698937541" />
 
-**📡 Resultados del escaneo**
 
 Se detectaron los siguientes puertos abiertos:
 
@@ -77,7 +70,6 @@ HTTP.
 
 - Control del sistema sin necesidad de explotación adicional
 
-![](media/image1.png){width="5.905555555555556in" height="2.9375in"}
 
 **Conclusión de la fase de escaneo**\
 El sistema presenta múltiples servicios expuestos que incrementan la
@@ -108,6 +100,9 @@ En particular:
 
 **1. Servidor web accesible por el puerto 80**
 
+<img width="527" height="279" alt="image" src="https://github.com/user-attachments/assets/e548de12-8bac-4a75-9b6d-443b7d55c623" />
+
+
 **Enumeración del servicio web (Puerto 80)**\
 La máquina objetivo presenta un servicio web activo en el puerto 80
 accesible desde la red.
@@ -129,9 +124,8 @@ empleadas por el servidor.
 
 - Lenguaje: PHP 7.3.12
 
-> ![](media/image2.png){width="5.489583333333333in" height="2.90625in"}
->
-> ![](media/image3.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/974e137b-72fa-4659-a889-08a1d1edacbd" />
+
 
 **ANÁLISIS DE SEGURIDAD**
 
@@ -178,9 +172,10 @@ WordPress:
 
 - /license.txt y /readme.html → Archivos de documentación
 
-> ![](media/image4.png){width="4.833333333333333in" height="2.9375in"}
->
-> ![](media/image5.png){width="4.802083333333333in" height="2.9375in"}
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b3b0fb4a-4e15-4523-8e75-04a29eee8b2c" />
+
 
 **Vulnerabilidades identificadas**\
 **Exposición de estructura de WordPress - Severidad: MEDIA**\
@@ -239,9 +234,11 @@ se observó un comportamiento anómalo durante la navegación.
 - El panel de login de WordPress (wp-login.php) no permitía acceso
   correctamente incluso disponiendo de credenciales válidas.
 
-![](media/image6.png){width="4.875in" height="2.9375in"}
+<img width="468" height="282" alt="image" src="https://github.com/user-attachments/assets/31abc063-7028-4fb0-a0f4-0bf601c8342b" />
 
-![](media/image7.png){width="5.905555555555556in" height="2.9375in"}
+
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/66accd15-06a5-402b-96e0-71f86ca23886" />
+
 
 **Análisis automatizado del servicio web**\
 Ante la situación detectada se decidió centrar el análisis en la única
@@ -258,7 +255,8 @@ ocultación o restricción.\
 Esto facilita ataques de enumeración y fuerza bruta contra el sistema de
 autenticación.
 
-![](media/image8.png){width="5.905555555555556in" height="2.9375in"}
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/7ec9b4c8-da31-4504-8202-58cf8e00e276" />
+
 
 **Referencia asociada**\
 CVE-2024-2473 (referencia a exposición del endpoint de login en
@@ -278,7 +276,8 @@ Se pudieron identificar usuarios válidos del sistema:
 
 - Roldan
 
-![](media/image9.png){width="5.114583333333333in" height="2.9375in"}
+<img width="491" height="282" alt="image" src="https://github.com/user-attachments/assets/e4ee0a35-bc42-4860-b892-4b45c50e2fcf" />
+
 
 **Análisis automatizado con Nuclei**\
 Posteriormente se utilizó la herramienta Nuclei sobre la URL del
@@ -300,7 +299,7 @@ El análisis detectó múltiples indicadores de seguridad relevantes:
 - Exposición de archivos informativos (readme/directory listing) ---
   BAJA/INFORMATIVA
 
-![](media/image10.png){width="5.8125in" height="3.125in"}
+<img width="558" height="300" alt="image" src="https://github.com/user-attachments/assets/f6156d94-c7e9-447d-bcef-b2232fcdaf88" />
 
 **Impacto de las vulnerabilidades**
 
@@ -351,8 +350,10 @@ Entre los términos obtenidos destacan:
 
 - Quesosroldan
 
-> ![](media/image11.png){width="5.905555555555556in"
-> height="2.8333333333333335in"}
+<img width="1918" height="920" alt="image" src="https://github.com/user-attachments/assets/4f616aef-bd23-44fe-9117-bcee5134b763" />
+
+
+
 
 **Análisis**\
 El diccionario generado contiene términos contextualizados al sitio
@@ -393,6 +394,8 @@ diccionario personalizado generado previamente.
 wpscan \--url http://192.168.0.27/wordpress/ \--usernames
 administrador,roldan \--passwords prototipo_xd
 
+
+
 **Objetivo**\
 Obtener credenciales válidas de acceso al panel de administración
 mediante el ataque de diccionario.
@@ -402,11 +405,11 @@ El ataque fue exitoso, obtenidas las siguientes credenciales:\
 **Usuario: roldan**\
 **Contraseña: QuesoManchego**
 
-![](media/image12.png){width="5.905555555555556in"
-height="2.8333333333333335in"}
+<img width="1918" height="920" alt="image" src="https://github.com/user-attachments/assets/0274338c-177b-43fe-843a-2734eecce46d" />
 
-![](media/image13.png){width="5.905555555555556in"
-height="2.8333333333333335in"}
+
+<img width="1918" height="920" alt="image" src="https://github.com/user-attachments/assets/bb74396c-d59c-42f2-9c0e-48f068d2aa2f" />
+
 
 - Al intentar entrar por el login se produce una redirección a localhost
   por lo que no se puede acceder al panel de administración desde la
@@ -441,7 +444,8 @@ credenciales contra el servicio SMB:
 
 **netexec smb 192.168.5.140 -u roldan -p \"QuesoManchego\"**
 
-![](media/image14.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/be603287-e246-4494-ab17-209100414df2" />
+
 
 **Enumeración de usuarios y recursos**\
 Una vez validado el acceso, se realizaron tareas de enumeración:\
@@ -513,7 +517,8 @@ Se configuraron los siguientes parámetros:
 
 - LPORT: 4444
 
-![](media/image15.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/f041c86d-1e8b-4d7e-9ec4-9d93408a8a18" />
+
 
 **Justificación de la explotación**\
 Tras validar el acceso SMB con credenciales válidas y observar la
@@ -560,9 +565,11 @@ atacante mediante Meterpreter:\
 **download C:\\\\wamp64\\\\www\\\\wordpress\\\\wp-config.php**\
 El archivo fue transferido correctamente al sistema del auditor.
 
-![](media/image16.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/802be09f-5c89-4479-b1a8-dae1d3c09088" />
 
-![](media/image17.png){width="5.905555555555556in" height="2.9375in"}
+
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/89f774aa-3504-4f9b-bd8b-6beeb757c197" />
+
 
 El acceso previo al panel web no permitió visualizar este archivo debido
 a restricciones del servidor y configuraciones relacionadas con
@@ -600,7 +607,8 @@ que se intentó el acceso remoto utilizando dichas credenciales.
 
 **evil-winrm -i 192.168.0.26 -u Administrator -p T00MuchW0rk70D0**
 
-![](media/image18.png){width="5.905555555555556in" height="2.9375in"}
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/00d9a480-36f2-4f46-a430-ec3afd1182a2" />
+
 
 **Clasificación de la vulnerabilidad**\
 **Tipo: Reutilización de credenciales/acceso remoto no autorizado**\
