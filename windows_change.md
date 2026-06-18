@@ -55,7 +55,8 @@ dominio megachange.nyx.
 - Análisis: La presencia de WinRM abierto sería un vector crucial más
   adelante.
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/14e2c2ea-a823-4a53-9c3c-266d9b55086f" />
+<img width="1400" height="689" alt="image" src="https://github.com/user-attachments/assets/9cc967af-c45a-4862-9cca-165b787014b8" />
+
 
 
 Identificación del Domain Controller y servicios expuestos.
