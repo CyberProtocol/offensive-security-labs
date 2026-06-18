@@ -76,7 +76,7 @@ Usando dig y fierce, interrogué el servicio DNS.
 
 
 
-<img width="1024" height="441" alt="image" src="https://github.com/user-attachments/assets/b5ecce73-40b9-462e-ab5c-3e696a8d2d7f" />
+<img width="1040" height="441" alt="image" src="https://github.com/user-attachments/assets/b5ecce73-40b9-462e-ab5c-3e696a8d2d7f" />
 
 
 
