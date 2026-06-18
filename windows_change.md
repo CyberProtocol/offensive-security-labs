@@ -72,7 +72,7 @@ Usando dig y fierce, interrogué el servicio DNS.
 - Pivot: Al no haber vectores DNS, el siguiente paso lógico fue intentar
   enumerar sin credenciales en SMB y LDAP.
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/7dd44797-3c59-44a7-b154-cbf9688192ed" />
+<img width="1054" height="441" alt="image" src="https://github.com/user-attachments/assets/7dd44797-3c59-44a7-b154-cbf9688192ed" />
 
 
 
