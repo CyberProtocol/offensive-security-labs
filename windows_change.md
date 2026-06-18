@@ -153,7 +153,8 @@ contra alfredo vía SMB usando la lista rockyou.txt.
 <img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/1a80c866-d730-4f27-881c-c047b532fa46" />
 
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/b9a4390c-9fac-43a6-843b-45c2d2595967" />
+<img width="1806" height="860" alt="image" src="https://github.com/user-attachments/assets/4d4320a9-ae0d-4536-8c9b-1e84604f3d9c" />
+
 
 
 \> NETEXEC mostrando el éxito con \'Password1\'
@@ -173,7 +174,8 @@ Ya dentro como alfredo, enumeré qué recursos eran accesibles.
 - Hipótesis: Si alfredo y sysadmin fueron creados juntos, ¿habría una
   relación de permisos entre ellos?
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/4a526a0d-ca69-4338-a723-781cccee160b" />
+<img width="1806" height="860" alt="image" src="https://github.com/user-attachments/assets/eccd01fc-d8c8-4832-bc98-e4d3bf5a9ca0" />
+
 
 
 \> enumeración de shares y usuarios con credenciales
