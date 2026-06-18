@@ -304,7 +304,8 @@ como administrator.
   modificar el esquema, crear usuarios dorados (Golden Ticket) y acceder
   a cualquier dato.
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/ab00b42f-b0dd-40b5-a5f2-2e11a29b3499" />
+<img width="1820" height="506" alt="image" src="https://github.com/user-attachments/assets/d46506cd-579c-427d-ae85-828d6641f0b8" />
+
 
 
 <img width="1793" height="667" alt="image" src="https://github.com/user-attachments/assets/ddb7d64c-2d7e-4b49-a376-2d2d18d3924a" />
