@@ -98,7 +98,8 @@ Se probaron vectores clásicos de configuración errónea:
 - Conclusión: Para progresar, era obligatorio obtener credenciales
   válidas primero.
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/51d5323a-eecb-4016-9ef8-a075b319afea" />
+<img width="1316" height="528" alt="image" src="https://github.com/user-attachments/assets/cdd56a93-e6a8-4ca5-a73f-8d352e2cbdf1" />
+
 
 
 Outputs de los intentos fallidos con nxc/netexec
