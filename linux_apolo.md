@@ -111,7 +111,8 @@ whatweb http://172.17.0.2
 
 Apache\[2.4.58\], Bootstrap, HTML5, Ubuntu Linux, Title\[Apple Store\]
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/f9b6c5f8-49b8-4935-b32b-757672013081" />
+<img width="1806" height="458" alt="image" src="https://github.com/user-attachments/assets/819c58c4-92a2-4847-9c5d-0a1447afa187" />
+
 
 
 **Recomendación:**
@@ -135,10 +136,13 @@ búsqueda como puntos clave.
 
 *\[4: Interfaz normal\]*
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/7a4f3502-86fb-4703-9cd5-030330a5b819" />
+<img width="1808" height="774" alt="image" src="https://github.com/user-attachments/assets/5e315ec0-460a-4f1d-a6b9-db669ee61338" />
+
 
 Login\
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/bcd968bc-c260-45e0-be6a-4ed4786ac883" />
+
+<img width="1792" height="844" alt="image" src="https://github.com/user-attachments/assets/d379948b-35ad-4c25-96ab-09dd207071bc" />
+
 
 
 
@@ -201,14 +205,17 @@ de bloqueo.
 
 *\[#8: Registro\]*
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/90b2e3df-79ac-4d5b-a07f-7a1d953a59f0" />
-
-
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/1e9df9fe-5924-4046-94a5-20d98c2efe5c" />
+<img width="1810" height="729" alt="image" src="https://github.com/user-attachments/assets/71e4ffe5-fe6e-400b-955c-19568f6cb414" />
 
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/dccf0d68-b570-4171-ba1a-5e6b7de2f7ac" />
+<img width="1659" height="595" alt="image" src="https://github.com/user-attachments/assets/5f2bb496-33f0-4e5f-a034-0fcfc86b6671" />
+
+
+
+
+<img width="1814" height="872" alt="image" src="https://github.com/user-attachments/assets/77831bd4-a902-4841-86f7-8b870b35118b" />
+
 
 
 
@@ -269,17 +276,19 @@ sqlmap -r peticion3 \--dbs \--batch \--dump
 
 *\[#11: Petición en Burp\]*
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/80043896-9042-42f8-9891-a072802385b4" />
+<img width="1638" height="744" alt="image" src="https://github.com/user-attachments/assets/59120c42-22d7-4635-9fc9-655d622e89f0" />
+
 
 
 
 *#12: sqlmap inyección\]*
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/0430507a-0d0f-4bfb-95ce-0488461bd4fa" />
+<img width="1607" height="558" alt="image" src="https://github.com/user-attachments/assets/bb0a60c4-5402-4386-9602-f4fcf4bf0239" />
 
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/9b964cb9-9ae8-45e6-89b0-b59885f204d4" />
+<img width="1606" height="768" alt="image" src="https://github.com/user-attachments/assets/ee7e652e-df02-4b89-9347-b69264fecf02" />
+
 
 
 
@@ -311,7 +320,8 @@ Tiempo: \<5 segundos
 
 #14: CrackStation hash\
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/fed31d12-f978-411c-86fc-b08eaac3208e" />
+<img width="1639" height="802" alt="image" src="https://github.com/user-attachments/assets/ab52a5fd-c53a-4f5b-bf20-69dd8946da6f" />
+
 
 
 
@@ -341,7 +351,8 @@ usuarios, pedidos recientes y estadísticas de ventas completas.
 
 *Dashboard admin\]*
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/fdbcc92d-c461-4cd0-b075-4e109ed57bc9" />
+<img width="1633" height="656" alt="image" src="https://github.com/user-attachments/assets/c66e57e6-cf75-4d60-8012-b47ed36df946" />
+
 
 
 
@@ -382,10 +393,11 @@ webshell (shell3.phtml) de 76 bytes fue exitosa.
 
 *#18: Burp bypass\]*
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/b907aee2-64f7-44d2-b6ea-a8e652bece1b" />
+<img width="1472" height="735" alt="image" src="https://github.com/user-attachments/assets/701fa05a-c4aa-43b6-b446-77e3547cc321" />
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/a5d03c8e-8475-48bd-a28a-d2640d796231" />
+<img width="1481" height="726" alt="image" src="https://github.com/user-attachments/assets/e6e2d804-1a20-4c96-853b-01fd93abb5bf" />
+
 
 
 **Recomendación:**
@@ -418,11 +430,13 @@ www-data@25716eb13389:\~\$ script -c bash /dev/null
 
 *Reverse shell\]*
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/2fecc365-3a69-454f-a580-1c7b509c3c39" />
+<img width="1461" height="610" alt="image" src="https://github.com/user-attachments/assets/e6a25338-f073-459b-ab36-ac0b55bf808a" />
+
 
 *\[ #21: TTY upgrade\]*
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/cf69fe29-ce88-4258-b070-de875bf8d193" />
+<img width="1446" height="705" alt="image" src="https://github.com/user-attachments/assets/94bd9efe-1a35-4003-9ba5-e12c655fcab8" />
+
 
 
 
@@ -463,7 +477,8 @@ cat /etc/passwd
 
 luisillo_o:x:1001:1001::/home/luisillo_o:/bin/sh
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/37ded216-6eb4-421a-ba84-b5c75917891b" />
+<img width="1470" height="701" alt="image" src="https://github.com/user-attachments/assets/8fd4aa97-cfac-4e1b-b50d-94ff707c0124" />
+
 
 **Recomendación:**
 
@@ -491,10 +506,12 @@ wget https://github.com/carlospolop/su-bruteforce/archive/master.zip
 
 unzip master.zip
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/0b0f104e-3308-4584-9e34-fd33ed13f1a4" />
+<img width="1467" height="717" alt="image" src="https://github.com/user-attachments/assets/ee022e46-f91c-424c-a347-dcf7608eeb0f" />
 
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/85d67cd4-16a3-46f2-a39b-9f9068db88cb" />
+
+<img width="1457" height="464" alt="image" src="https://github.com/user-attachments/assets/544ad0ef-d54d-4f3e-a9cb-be901a5c6f50" />
+
 
 
 **Recomendación:**
@@ -521,10 +538,12 @@ bash
 
 Password: 19831983
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/10fd59e9-37e0-4ff5-bf56-81c6aa9a779d" />
+<img width="1468" height="695" alt="image" src="https://github.com/user-attachments/assets/77f53d26-5bef-4870-bf71-072cad02fc27" />
 
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/8d9c63da-7f9e-4904-accd-bf5f24065460" />
+
+<img width="1472" height="695" alt="image" src="https://github.com/user-attachments/assets/04f7160b-691a-43c8-b9c7-7277cfc190e6" />
+
 
 
 **Recomendación:**
@@ -558,7 +577,8 @@ root:\$y\$j9T\$awXWvi2tYABgO5kreZcIi/\$obvQc0Amd6lFWbwfElQhZD6vpJN/AEV8/hZMXLYTx
 
 luisillo_o:\$y\$j9T\$jeXc8lTJhOBTedetDcKHI/\$Bo6qPkbZFVsfWoTJvAZ1x0t2jG3aGsHjOjxkqOpBGg6
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/de1bf9df-37cf-447e-aae7-062f6912eb72" />
+<img width="1470" height="733" alt="image" src="https://github.com/user-attachments/assets/8bf2a258-fd18-4a2c-9a9d-55902f5960eb" />
+
 
 
 **Recomendación:**
@@ -594,9 +614,11 @@ root@25716eb13389:\~*\# id*
 
 uid=0(root) gid=0(root) groups=0(root)
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/26631452-34af-419f-9c9e-12a82060b95a" />
+<img width="1446" height="698" alt="image" src="https://github.com/user-attachments/assets/06c0c49c-b56a-44e6-a83b-681e5350a24f" />
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/b97e6295-daa6-4caa-b36c-245cb2ae7412" />
+
+<img width="1456" height="647" alt="image" src="https://github.com/user-attachments/assets/69f08b43-b383-46ea-bf99-b79001635c17" />
+
 
 
 **Recomendación:**
