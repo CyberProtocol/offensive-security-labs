@@ -36,8 +36,8 @@ activo estaba en línea y accesible desde mi posición en la red.
 - Decisión: Proceder a escaneo de puertos para identificar servicios.
 
 
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/150e6a63-e96a-4127-ad68-1ac91084e1c3" />
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/cac38edf-68d3-4b51-9ca3-fc18f67f3212" />
 
 
 \> Pie: Figura 1: Confirmación de conectividad inicial.
@@ -55,7 +55,8 @@ dominio megachange.nyx.
 - Análisis: La presencia de WinRM abierto sería un vector crucial más
   adelante.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/bdc83621-c02e-4992-8d59-b3ce626dd0ed" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/14e2c2ea-a823-4a53-9c3c-266d9b55086f" />
+
 
 Identificación del Domain Controller y servicios expuestos.
 
@@ -71,10 +72,12 @@ Usando dig y fierce, interrogué el servicio DNS.
 - Pivot: Al no haber vectores DNS, el siguiente paso lógico fue intentar
   enumerar sin credenciales en SMB y LDAP.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/71a7a9cd-7ddc-42c1-9b52-12cb083bb573" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/7dd44797-3c59-44a7-b154-cbf9688192ed" />
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/a6e3d29b-0d30-4bd2-bb2c-bf43a8dbe07d" />
+
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/b5ecce73-40b9-462e-ab5c-3e696a8d2d7f" />
+
 
 
 Mapeo inicial de la estructura del dominio.
@@ -95,7 +98,7 @@ Se probaron vectores clásicos de configuración errónea:
 - Conclusión: Para progresar, era obligatorio obtener credenciales
   válidas primero.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/51d5323a-eecb-4016-9ef8-a075b319afea" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/51d5323a-eecb-4016-9ef8-a075b319afea" />
 
 
 Outputs de los intentos fallidos con nxc/netexec
@@ -112,7 +115,7 @@ identificar usuarios válidos sin bloquear cuentas (técnica silenciosa).
 - Estrategia: alfredo parecía un usuario estándar, el objetivo perfecto
   para fuerza bruta inicial.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/b9f54ff0-b193-411b-815e-d5876b58cb0c" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/b9f54ff0-b193-411b-815e-d5876b58cb0c" />
 
 
 \> KERBRUTE USERENUM
@@ -145,10 +148,10 @@ contra alfredo vía SMB usando la lista rockyou.txt.
   correcta, obligándome a depender de la debilidad de la contraseña
   humana (Password1) como único vector de entrada viable.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/1a80c866-d730-4f27-881c-c047b532fa46" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/1a80c866-d730-4f27-881c-c047b532fa46" />
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/b9a4390c-9fac-43a6-843b-45c2d2595967" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/b9a4390c-9fac-43a6-843b-45c2d2595967" />
 
 
 \> NETEXEC mostrando el éxito con \'Password1\'
@@ -168,7 +171,7 @@ Ya dentro como alfredo, enumeré qué recursos eran accesibles.
 - Hipótesis: Si alfredo y sysadmin fueron creados juntos, ¿habría una
   relación de permisos entre ellos?
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/4a526a0d-ca69-4338-a723-781cccee160b" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/4a526a0d-ca69-4338-a723-781cccee160b" />
 
 
 \> enumeración de shares y usuarios con credenciales
@@ -188,10 +191,10 @@ confianza en el AD.
   críticos de otro usuario, incluyendo forzar un cambio de contraseña.
   Una delegación de permisos peligrosa y olvidada.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/d3ebabfb-1efe-41d7-837b-5175073fc5aa" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/d3ebabfb-1efe-41d7-837b-5175073fc5aa" />
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/d9fa62ad-7b79-49e8-9506-6bb964b6cf36" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/d9fa62ad-7b79-49e8-9506-6bb964b6cf36" />
 
 
 \> BloodHound mostrando la arista GenericWrite
@@ -212,7 +215,7 @@ contraseña de sysadmin sin conocer la anterior.
   del DC.
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/42d83700-8e71-49a0-a5d6-4a4d13cf9e38" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/42d83700-8e71-49a0-a5d6-4a4d13cf9e38" />
 
 
 \>Comando rpcclient y verificación con netexec (Pwn3d!)
@@ -232,7 +235,7 @@ usando Evil-WinRM.
   (winPEASx64.exe y SharpHound.zip) al escritorio del usuario para un
   análisis profundo.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/30e8407f-8061-4562-8378-93b6f1dd1952" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/30e8407f-8061-4562-8378-93b6f1dd1952" />
 
 
 Shell de Evil-WinRM y listado de herramientas subidas (ls)
@@ -250,7 +253,7 @@ guardadas y vectores de escalada local.
 - Resultado Inicial: No se encontraron vulnerabilidades de kernel ni
   servicios mal configurados. El sistema estaba parcheado.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/d1778484-83e0-4b01-84b1-4460ade2c6f1" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/d1778484-83e0-4b01-84b1-4460ade2c6f1" />
 
 
 \> Banner de WinPEAS y sección inicial de escaneo
@@ -271,10 +274,10 @@ cuenta administrator.
   Active Directory. Es una práctica prohibida por su extrema
   peligrosidad.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/c58675bb-d8d1-49dc-aa59-a5f5b461c841" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/c58675bb-d8d1-49dc-aa59-a5f5b461c841" />
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/44600b6c-e24a-48b9-84f8-04f606305bb6" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/44600b6c-e24a-48b9-84f8-04f606305bb6" />
 
 
  
@@ -294,10 +297,10 @@ como administrator.
   modificar el esquema, crear usuarios dorados (Golden Ticket) y acceder
   a cualquier dato.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/ab00b42f-b0dd-40b5-a5f2-2e11a29b3499" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/ab00b42f-b0dd-40b5-a5f2-2e11a29b3499" />
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/90b26e4d-302d-41e4-9f4c-e267cfd011f3" />
+<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/90b26e4d-302d-41e4-9f4c-e267cfd011f3" />
 
 
 \ Whoami /groups mostrando los grupos privilegiados
