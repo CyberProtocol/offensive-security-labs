@@ -277,7 +277,7 @@ cuenta administrator.
 <img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/c58675bb-d8d1-49dc-aa59-a5f5b461c841" />
 
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/44600b6c-e24a-48b9-84f8-04f606305bb6" />
+<img width="1550" height="441" alt="image" src="https://github.com/user-attachments/assets/44600b6c-e24a-48b9-84f8-04f606305bb6" />
 
 
  
