@@ -300,7 +300,7 @@ como administrator.
 <img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/ab00b42f-b0dd-40b5-a5f2-2e11a29b3499" />
 
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/90b26e4d-302d-41e4-9f4c-e267cfd011f3" />
+<img width="1024" height="441" alt="image" src="https://github.com/user-attachments/assets/90b26e4d-302d-41e4-9f4c-e267cfd011f3" />
 
 
 \ Whoami /groups mostrando los grupos privilegiados
