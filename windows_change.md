@@ -214,8 +214,8 @@ contraseña de sysadmin sin conocer la anterior.
   marcador (Pwn3d!), lo que indica que sysadmin es administrador local
   del DC.
 
+<img width="1865" height="678" alt="image" src="https://github.com/user-attachments/assets/032c59cc-db63-4bcd-a302-0e1592d47430" />
 
-<img width="1024" height="441" alt="image" src="https://github.com/user-attachments/assets/42d83700-8e71-49a0-a5d6-4a4d13cf9e38" />
 
 
 \>Comando rpcclient y verificación con netexec (Pwn3d!)
@@ -253,7 +253,8 @@ guardadas y vectores de escalada local.
 - Resultado Inicial: No se encontraron vulnerabilidades de kernel ni
   servicios mal configurados. El sistema estaba parcheado.
 
-<img width="1024" height="441" alt="image" src="https://github.com/user-attachments/assets/d1778484-83e0-4b01-84b1-4460ade2c6f1" />
+<img width="1882" height="742" alt="image" src="https://github.com/user-attachments/assets/bfcdc528-0daf-4879-b832-ef7cdc3d30be" />
+
 
 
 \> Banner de WinPEAS y sección inicial de escaneo
