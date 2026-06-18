@@ -193,10 +193,10 @@ confianza en el AD.
   críticos de otro usuario, incluyendo forzar un cambio de contraseña.
   Una delegación de permisos peligrosa y olvidada.
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/d3ebabfb-1efe-41d7-837b-5175073fc5aa" />
+<img width="1819" height="759" alt="image" src="https://github.com/user-attachments/assets/ba2308d3-0481-4444-936a-2d900e7af66c" />
 
+<img width="1797" height="750" alt="image" src="https://github.com/user-attachments/assets/9f7e6827-6db5-4ac8-99a9-476ce5321851" />
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/d9fa62ad-7b79-49e8-9506-6bb964b6cf36" />
 
 
 \> BloodHound mostrando la arista GenericWrite
@@ -305,7 +305,8 @@ como administrator.
 <img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/ab00b42f-b0dd-40b5-a5f2-2e11a29b3499" />
 
 
-<img width="1024" height="441" alt="image" src="https://github.com/user-attachments/assets/90b26e4d-302d-41e4-9f4c-e267cfd011f3" />
+<img width="1793" height="667" alt="image" src="https://github.com/user-attachments/assets/ddb7d64c-2d7e-4b49-a376-2d2d18d3924a" />
+
 
 
 \ Whoami /groups mostrando los grupos privilegiados
