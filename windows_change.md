@@ -274,7 +274,8 @@ cuenta administrator.
   Active Directory. Es una práctica prohibida por su extrema
   peligrosidad.
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/c58675bb-d8d1-49dc-aa59-a5f5b461c841" />
+<img width="1890" height="676" alt="image" src="https://github.com/user-attachments/assets/d98beed7-6307-4ba9-91df-f9486a6e162d" />
+
 
 
 <img width="1750" height="699" alt="image" src="https://github.com/user-attachments/assets/107a78a1-99f7-4064-a05e-6da6d3c9a3f9" />
