@@ -201,7 +201,8 @@ de bloqueo.
 
 *\[#8: Registro\]*
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/51954eec-e623-414c-a480-2ff8963d4fcf" />
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/90b2e3df-79ac-4d5b-a07f-7a1d953a59f0" />
+
 
 <img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/5bad30dd-c030-4e95-9763-fe0ca2aa63bb" />
 
