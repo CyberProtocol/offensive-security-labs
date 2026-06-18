@@ -215,7 +215,7 @@ contraseña de sysadmin sin conocer la anterior.
   del DC.
 
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/42d83700-8e71-49a0-a5d6-4a4d13cf9e38" />
+<img width="1024" height="441" alt="image" src="https://github.com/user-attachments/assets/42d83700-8e71-49a0-a5d6-4a4d13cf9e38" />
 
 
 \>Comando rpcclient y verificación con netexec (Pwn3d!)
@@ -235,7 +235,7 @@ usando Evil-WinRM.
   (winPEASx64.exe y SharpHound.zip) al escritorio del usuario para un
   análisis profundo.
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/30e8407f-8061-4562-8378-93b6f1dd1952" />
+<img width="1024" height="441" alt="image" src="https://github.com/user-attachments/assets/30e8407f-8061-4562-8378-93b6f1dd1952" />
 
 
 Shell de Evil-WinRM y listado de herramientas subidas (ls)
@@ -253,7 +253,7 @@ guardadas y vectores de escalada local.
 - Resultado Inicial: No se encontraron vulnerabilidades de kernel ni
   servicios mal configurados. El sistema estaba parcheado.
 
-<img width="924" height="441" alt="image" src="https://github.com/user-attachments/assets/d1778484-83e0-4b01-84b1-4460ade2c6f1" />
+<img width="1024" height="441" alt="image" src="https://github.com/user-attachments/assets/d1778484-83e0-4b01-84b1-4460ade2c6f1" />
 
 
 \> Banner de WinPEAS y sección inicial de escaneo
