@@ -204,10 +204,12 @@ de bloqueo.
 <img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/90b2e3df-79ac-4d5b-a07f-7a1d953a59f0" />
 
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/5bad30dd-c030-4e95-9763-fe0ca2aa63bb" />
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/1e9df9fe-5924-4046-94a5-20d98c2efe5c" />
 
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/4b55e38d-0bae-4cd2-9ba5-2d2e5c69dd75" />
+
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/dccf0d68-b570-4171-ba1a-5e6b7de2f7ac" />
+
 
 
 **Recomendación:**
@@ -267,15 +269,18 @@ sqlmap -r peticion3 \--dbs \--batch \--dump
 
 *\[#11: Petición en Burp\]*
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/62eaa5ec-73b2-4d19-bf0f-a91030bcc05e" />
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/80043896-9042-42f8-9891-a072802385b4" />
+
 
 
 *#12: sqlmap inyección\]*
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/ccc60558-f998-4973-9af7-8e8b86baba29" />
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/0430507a-0d0f-4bfb-95ce-0488461bd4fa" />
 
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/ccd86c9f-2e45-44be-af6b-a62c33ef109b" />
+
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/9b964cb9-9ae8-45e6-89b0-b59885f204d4" />
+
 
 
 **Recomendación:**
@@ -306,7 +311,8 @@ Tiempo: \<5 segundos
 
 #14: CrackStation hash\
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/fee488aa-6407-46c1-94e5-b1c1028beb2e" />
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/fed31d12-f978-411c-86fc-b08eaac3208e" />
+
 
 
 **Recomendación:**
@@ -335,11 +341,13 @@ usuarios, pedidos recientes y estadísticas de ventas completas.
 
 *Dashboard admin\]*
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/69e15398-dc9b-4a91-b907-f53504c205b5" />
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/fdbcc92d-c461-4cd0-b075-4e109ed57bc9" />
+
 
 
 *\[ #17: Pedidos\]*
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/d7802743-6703-45b9-beaa-c73ee5ec8cc4" />
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/939f3cf3-74f4-491c-b4dd-273c7630e47a" />
+
 
 
 **Recomendación:**
@@ -374,9 +382,11 @@ webshell (shell3.phtml) de 76 bytes fue exitosa.
 
 *#18: Burp bypass\]*
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/026291da-8092-472c-b6c4-7673ba82e1d2" />
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/b907aee2-64f7-44d2-b6ea-a8e652bece1b" />
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/544d93a8-a5c8-4e1b-b503-0bf3d9e7797b" />
+
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/a5d03c8e-8475-48bd-a28a-d2640d796231" />
+
 
 **Recomendación:**
 
@@ -408,12 +418,12 @@ www-data@25716eb13389:\~\$ script -c bash /dev/null
 
 *Reverse shell\]*
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/4b8a55c4-3df7-447a-9b52-188189abea68" />
-
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/2fecc365-3a69-454f-a580-1c7b509c3c39" />
 
 *\[ #21: TTY upgrade\]*
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/95b42318-4af6-4691-9b88-49a56b07083a" />
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/cf69fe29-ce88-4258-b070-de875bf8d193" />
+
 
 
 **Recomendación:**
@@ -453,8 +463,7 @@ cat /etc/passwd
 
 luisillo_o:x:1001:1001::/home/luisillo_o:/bin/sh
 
-![](media/image21.png){width="5.905555555555556in"
-height="2.9375in"}*#22: /etc/passwd\]*
+<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/37ded216-6eb4-421a-ba84-b5c75917891b" />
 
 **Recomendación:**
 
