@@ -46,7 +46,8 @@ nmap -sS \--open -sC -sV -n -Pn 192.168.0.23
 
   - wp-config.php, wp-login.php, xmlrpc.php
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/53687f6b-5721-43a9-8dcf-8dc51815e2d7" />
+<img width="580" height="551" alt="image" src="https://github.com/user-attachments/assets/b450a788-562b-4f6f-8ec6-6072b403844c" />
+
 
 
 **Vulnerabilidad 1 -- FTP Anónimo**
@@ -83,7 +84,7 @@ credenciales, permitiendo al atacante:
 - Monitorear y registrar acceso FTP para detectar actividad anómala
   (/var/log/vsftpd.log).
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/29cc93d7-8e75-4165-a9c1-35f7a7b1750d" />
+<img width="1167" height="494" alt="image" src="https://github.com/user-attachments/assets/f0d93b00-6895-46d0-a324-8d797aac304d" />
 
 
 **Vulnerabilidad 2 - Exposición de Información en WordPress**
@@ -149,7 +150,8 @@ información sensible:\
 - Facilitar un ataque de fuerza bruta al panel de WordPress si el
   usuario WordPress existe también en el CMS.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/65a9d55a-137d-4eef-b2db-8bbd88d52d1e" />
+<img width="1186" height="569" alt="image" src="https://github.com/user-attachments/assets/c1d81b46-4cca-4530-a181-c54ab9be1586" />
+
 
 
 **Validación de Credenciales y Descubrimiento de phpMyAdmin**
@@ -298,10 +300,11 @@ pendientes.**
 
 - Monitorear plugins/uploads.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/2dc03816-a42c-41c9-90af-5a54c4d905fe" />
+<img width="1188" height="556" alt="image" src="https://github.com/user-attachments/assets/30eb1e4b-e7e6-4f5a-897b-7a92a444dce3" />
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/ab110594-42b9-4f31-9a10-ff17096378fe" />
+<img width="1193" height="528" alt="image" src="https://github.com/user-attachments/assets/ec4a572e-0548-4780-ad59-096475a6dac2" />
+
 
 
 **Post-Explotación Inicial y Enumeración de Privilegios**
