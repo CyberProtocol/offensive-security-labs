@@ -34,7 +34,7 @@ sin problemas de conectividad.
 
 **FASE 1 -- ENUMERACIÓN DE SERVICIOS (NMAP)**
 
-📷 **Imagen -- Nmap Scan completo**\
+ **Imagen -- Nmap Scan completo**\
 <img width="1025" height="479" alt="image" src="https://github.com/user-attachments/assets/db30af9e-e928-4413-b84f-37412d1f7d75" />
 
 
@@ -91,7 +91,7 @@ A partir de aquí toda la estrategia se centró en Active Directory.
 
 **FASE 2 -- ENUMERACIÓN SMB (SIN CREDENCIALES)**
 
-📷 **Imagen 1 -- NetExec Null Session**\
+ **Imagen 1 -- NetExec Null Session**\
 <img width="1178" height="431" alt="image" src="https://github.com/user-attachments/assets/be6490fe-5116-4721-9261-906067147d4c" />
 
 
@@ -130,7 +130,7 @@ brecha me indicó claramente que el hardening SMB era insuficiente.
 
 **FASE 3 -- ENUMERACIÓN DNS Y LDAP**
 
-📷 **Imagen -- Consultas dig / LDAP rootDSE**\
+ **Imagen -- Consultas dig / LDAP rootDSE**\
 <img width="1181" height="656" alt="image" src="https://github.com/user-attachments/assets/838bd174-dcec-45c6-88cb-27bcfe70d378" />
 
 
@@ -158,7 +158,7 @@ dig \@192.168.0.40 control.nyx0 A
 
 bash
 
-apsearch -x -H ldap://192.168.0.40 -s base namingcontexts
+ldapsearch -x -H ldap://192.168.0.40 -s base namingcontexts
 
 <img width="1176" height="469" alt="image" src="https://github.com/user-attachments/assets/9f873ef1-4f4f-4f04-b201-6c1b011c4b5b" />
 
@@ -182,7 +182,7 @@ ataques Kerberos de forma muy dirigida.
 
 **FASE 4 -- ENUMERACIÓN DE USUARIOS (KERBRUTE)**
 
-📷 **Imagen -- Kerbrute userenum**
+ **Imagen -- Kerbrute userenum**
 
 <img width="980" height="432" alt="image" src="https://github.com/user-attachments/assets/776951bf-e376-4541-a16c-c26f35080eed" />
 
@@ -218,7 +218,7 @@ b.lewis, que más tarde usaría como pivot para AS‑REP Roasting.
 
 **FASE 5 -- AS‑REP ROASTING (b.lewis)**
 
-📷 **Imagen -- GetNPUsers + hash AS‑REP**\
+ **Imagen -- GetNPUsers + hash AS‑REP**\
 <img width="1161" height="550" alt="image" src="https://github.com/user-attachments/assets/896573f1-989e-42b1-a67e-1eac35633180" />
 
 
@@ -234,7 +234,7 @@ impacket-GetNPUsers control.nyx/b.lewis -no-pass -dc-ip 192.168.0.40
 
 - Hash Kerberos tipo AS‑REP obtenido para b.lewis@CONTROL.NYX.
 
-📷 **Imagen -- John cracking**\
+ **Imagen -- John cracking**\
 <img width="1159" height="449" alt="image" src="https://github.com/user-attachments/assets/20514959-f508-4dc1-86db-22b3252ac8fe" />
 
 **Cracking offline**
@@ -305,7 +305,7 @@ nxc smb 192.168.0.40 -u j.levy -p /usr/share/wordlists/rockyou.txt
 
 - j.levy : Password1
 
-📷 **Imagen -- Validación y shares**\
+ **Imagen -- Validación y shares**\
 
 <img width="1186" height="523" alt="image" src="https://github.com/user-attachments/assets/e103fe3d-2ac6-4792-a009-9dc85bc94038" />
 
@@ -346,7 +346,7 @@ whoami /all
 
 - Shell PowerShell interactiva en el DC.
 
-📷 **Imagen -- user.txt**\
+ **Imagen -- user.txt**\
 <img width="1174" height="578" alt="image" src="https://github.com/user-attachments/assets/3be8f8c9-c88e-4967-9343-6964d56a4164" />
 
 
@@ -451,7 +451,7 @@ control.nyx/Administrator@controller.control.nyx
 
 - Creación de servicio remoto y shell con privilegios de SYSTEM.
 
-📷 **Imagen -- root.txt**\
+ **Imagen -- root.txt**\
 <img width="1136" height="517" alt="image" src="https://github.com/user-attachments/assets/06cc3d33-31f0-4de4-8738-2e97ff7dd4f2" />
 
 
