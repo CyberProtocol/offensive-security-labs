@@ -9,7 +9,7 @@ máquina objetivo en la red.
 
 **Comando ejecutado:** ping 192.168.0.32
 
-<img width="501" height="495" alt="image" src="https://github.com/user-attachments/assets/f52cbd96-6fb8-49c5-8650-e6d030ea4d17" />
+<img width="1003" height="807" alt="image" src="https://github.com/user-attachments/assets/c96bce33-10ed-41a7-b307-bf6b79f4d125" />
 
 
 **Observaciones:**
@@ -38,7 +38,8 @@ expuestos y posibles vectores de entrada. **Comando ejecutado:** nmap
 
 22/tcp SSH OpenSSH 10.2 80/tcp HTTP Apache 2.4.66
 
-<img width="679" height="352" alt="image" src="https://github.com/user-attachments/assets/8f553685-7ffe-4a39-8b4c-7b159018b977" />
+<img width="1350" height="701" alt="image" src="https://github.com/user-attachments/assets/1c7e2686-3cc9-4854-b9c5-8056e09bb39f" />
+
 
 
 **Observaciones:**
@@ -70,7 +71,8 @@ orientar la auditoría.
 - Se revisaron posibles APIs y endpoints,
   pero **no se encontró información sensible ni recursos ocultos**.
   
-  <img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/5cef9d1d-a317-4d17-9b96-8dfc0f6d9766" />
+  <img width="1272" height="888" alt="image" src="https://github.com/user-attachments/assets/3defbecc-fc82-46d5-be80-d42589fbd516" />
+
 
 
 
@@ -90,13 +92,15 @@ rutas ocultas y paneles administrativos.
 ffuf -u http://alpine.nyx/FUZZ -w
 /usr/share/seclists/Discovery/WebContent/raft-small-directories.txt -c
 
-<img width="854" height="844" alt="image" src="https://github.com/user-attachments/assets/ac8d20e8-bec7-4d04-b1b1-a89c265dc822" />
+<img width="1089" height="846" alt="image" src="https://github.com/user-attachments/assets/831d49e0-5a51-47cd-b02c-73ea18bed8b2" />
+
 
 
 ffuf -u http://alpine.nyx/FUZZ -w
 /usr/share/seclists/Discovery/WebContent/small-words.txt -c
 
-<img width="660" height="588" alt="image" src="https://github.com/user-attachments/assets/74b27344-0b31-407c-b082-2230c8c848c1" />
+<img width="983" height="894" alt="image" src="https://github.com/user-attachments/assets/f16132bf-65db-48c0-b1eb-a7c6da18cd9e" />
+
 
 
 
@@ -119,7 +123,8 @@ ffuf -u http://alpine.nyx/FUZZ -w
 
 Se obtuvieron credenciales de acceso filtradas:
 
-<img width="679" height="409" alt="image" src="https://github.com/user-attachments/assets/d863be72-4b7b-4535-b12b-fc8f04b58891" />
+<img width="1018" height="601" alt="image" src="https://github.com/user-attachments/assets/4c9092d9-439c-46c1-813e-7173ace1cec0" />
+
 
 
 Usuario: developer
@@ -130,7 +135,8 @@ Password: SummerVibes2024!
 
 **Comando ejecutado:** ssh developer@alpine.nyx
 
-<img width="679" height="421" alt="image" src="https://github.com/user-attachments/assets/e92b4d1d-04f4-43e7-adb5-c84cf854264c" />
+><img width="1012" height="613" alt="image" src="https://github.com/user-attachments/assets/e9c164e6-9fdc-4b21-aa80-044be9127e22" />
+
 
 
 **Observaciones:**
@@ -138,9 +144,10 @@ Password: SummerVibes2024!
 - Acceso confirmado a ~developer~.
 
 - Se revisaron archivos del home (~user.txt~, ~.ssh~) y **no se encontró
-  contenido sensible adicional**.
+  contenido sensible adicional**.>
 
-  <img width="679" height="396" alt="image" src="https://github.com/user-attachments/assets/fe58fd3e-5ac5-465d-a30b-50f8d831ab76" />
+  <img width="997" height="552" alt="image" src="https://github.com/user-attachments/assets/f589f99f-19ef-42f9-a4fc-2de5ae27dc2b" />
+
 
 
 **Recomendaciones:**
@@ -158,7 +165,7 @@ ps aux sudo -l
 
 ls -la /home/developer /home/sysadmin
 
-<img width="679" height="409" alt="image" src="https://github.com/user-attachments/assets/c1775c84-b943-4a74-8f9c-3d5ab53a9cb1" />
+<img width="1022" height="579" alt="image" src="https://github.com/user-attachments/assets/0fb52e1b-32c7-4247-b95c-b940cf018d7d" />
 
 
 **Observaciones:**
@@ -173,7 +180,8 @@ ls -la /home/developer /home/sysadmin
 
 **Recomendaciones:**
 
-<img width="1061" height="648" alt="image" src="https://github.com/user-attachments/assets/3febf4b2-fc42-4cd3-bb85-ba1eb65518db" />
+<img width="1000" height="580" alt="image" src="https://github.com/user-attachments/assets/93de888a-76cd-4da0-9f5a-6fd9ca047cc1" />
+
 
 - Monitorizar procesos y sesiones SSH
   activas.
@@ -199,7 +207,8 @@ ssh -i \~/id_rsa_sysadmin sysadmin@localhost
 - Probado acceso como ~sysadmin~, **sin encontrar información sensible
   adicional**.
   
-<img width="679" height="481" alt="image" src="https://github.com/user-attachments/assets/99ca40c2-2972-4d1e-b574-a13a639b2f37" />
+<img width="1007" height="669" alt="image" src="https://github.com/user-attachments/assets/2e58fb44-bf92-4134-98b4-ab9197c8d8ab" />
+
 
 
 **Recomendaciones:**
@@ -222,8 +231,9 @@ ubicación temporal.
 Aunque el script en sí no era directamente
 modicable por sysadmin, su comportamiento era predecible.
 - ~cleanup.sh~ contiene instrucciones para consolidar archivos de root.
+  
+<img width="1021" height="752" alt="image" src="https://github.com/user-attachments/assets/e7772520-80a4-49b4-938a-72add00ef609" />
 
-- <img width="679" height="538" alt="image" src="https://github.com/user-attachments/assets/0795e7b3-7540-48d2-9588-57b2ca5bdb7d" />
 
 
 **Recomendaciones:**
