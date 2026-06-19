@@ -10,7 +10,8 @@ de laboratorio)
 
 **FASE 0 -- HOST DISCOVERY**
 
-![](media/image1.png){width="5.905555555555556in" height="2.9375in"}
+<img width="946" height="480" alt="image" src="https://github.com/user-attachments/assets/262499b4-f28f-4968-8199-6d6cf50db08a" />
+
 
 **Comando ejecutado**
 
@@ -34,7 +35,8 @@ sin problemas de conectividad.
 **FASE 1 -- ENUMERACIÓN DE SERVICIOS (NMAP)**
 
 📷 **Imagen -- Nmap Scan completo**\
-![](media/image2.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1025" height="479" alt="image" src="https://github.com/user-attachments/assets/db30af9e-e928-4413-b84f-37412d1f7d75" />
+
 
 **Comandos ejecutados**
 
@@ -90,7 +92,8 @@ A partir de aquí toda la estrategia se centró en Active Directory.
 **FASE 2 -- ENUMERACIÓN SMB (SIN CREDENCIALES)**
 
 📷 **Imagen 1 -- NetExec Null Session**\
-![](media/image3.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1178" height="431" alt="image" src="https://github.com/user-attachments/assets/be6490fe-5116-4721-9261-906067147d4c" />
+
 
 **Comando principal**
 
@@ -103,7 +106,8 @@ netexec smb 192.168.0.40 -u \'\' -p \'\'
 - Conexión SMB anónima exitosa (null session) contra 445/tcp.
 
 📷 **Imagen 2 -- smbclient IPC\$**\
-![](media/image4.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1182" height="403" alt="image" src="https://github.com/user-attachments/assets/d5bceeca-605f-421c-b00d-1aef87e65a5a" />
+
 
 **Comandos complementarios**
 
@@ -127,11 +131,13 @@ brecha me indicó claramente que el hardening SMB era insuficiente.
 **FASE 3 -- ENUMERACIÓN DNS Y LDAP**
 
 📷 **Imagen -- Consultas dig / LDAP rootDSE**\
-![](media/image5.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1181" height="656" alt="image" src="https://github.com/user-attachments/assets/838bd174-dcec-45c6-88cb-27bcfe70d378" />
+
 
 **DNS -- Comandos clave**
 
-![](media/image6.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1183" height="578" alt="image" src="https://github.com/user-attachments/assets/8aea8e1f-5ded-4d2a-8368-a91592adbebf" />
+
 
 bash
 
@@ -154,7 +160,8 @@ bash
 
 apsearch -x -H ldap://192.168.0.40 -s base namingcontexts
 
-![](media/image7.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1176" height="469" alt="image" src="https://github.com/user-attachments/assets/9f873ef1-4f4f-4f04-b201-6c1b011c4b5b" />
+
 
 **Naming Contexts obtenidos**
 
@@ -177,9 +184,11 @@ ataques Kerberos de forma muy dirigida.
 
 📷 **Imagen -- Kerbrute userenum**
 
-![](media/image8.png){width="5.905555555555556in"
-height="2.9375in"}![](media/image9.png){width="5.905555555555556in"
-height="2.9375in"}
+<img width="980" height="432" alt="image" src="https://github.com/user-attachments/assets/776951bf-e376-4541-a16c-c26f35080eed" />
+
+<img width="824" height="490" alt="image" src="https://github.com/user-attachments/assets/a3d977b2-72fe-48bd-9e81-c3dd5c4c61d2" />
+
+
 
 **Comandos ejecutados**
 
@@ -210,7 +219,8 @@ b.lewis, que más tarde usaría como pivot para AS‑REP Roasting.
 **FASE 5 -- AS‑REP ROASTING (b.lewis)**
 
 📷 **Imagen -- GetNPUsers + hash AS‑REP**\
-![](media/image10.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1161" height="550" alt="image" src="https://github.com/user-attachments/assets/896573f1-989e-42b1-a67e-1eac35633180" />
+
 
 **Comando**
 
@@ -225,7 +235,7 @@ impacket-GetNPUsers control.nyx/b.lewis -no-pass -dc-ip 192.168.0.40
 - Hash Kerberos tipo AS‑REP obtenido para b.lewis@CONTROL.NYX.
 
 📷 **Imagen -- John cracking**\
-![](media/image11.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1159" height="449" alt="image" src="https://github.com/user-attachments/assets/20514959-f508-4dc1-86db-22b3252ac8fe" />
 
 **Cracking offline**
 
@@ -246,9 +256,11 @@ Esta fue la primera credencial fuerte de dominio que conseguí.
 
 **-- NetExec SMB con credenciales**
 
-![](media/image12.png){width="5.905555555555556in"
-height="2.9375in"}![](media/image13.png){width="5.905555555555556in"
-height="2.9375in"}
+<img width="1159" height="471" alt="image" src="https://github.com/user-attachments/assets/d8560317-9395-49a8-8053-a01826872870" />
+
+<img width="1170" height="482" alt="image" src="https://github.com/user-attachments/assets/3d871f3b-17a9-4cb4-964c-b10723a80f1a" />
+
+
 
 **Comandos clave**
 
@@ -279,7 +291,8 @@ valor dentro del dominio.
 
 **NetExec password spray**
 
-![](media/image14.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1176" height="545" alt="image" src="https://github.com/user-attachments/assets/c40bc896-2735-4efd-8caf-84f78033ea38" />
+
 
 **Comando**
 
@@ -293,7 +306,9 @@ nxc smb 192.168.0.40 -u j.levy -p /usr/share/wordlists/rockyou.txt
 - j.levy : Password1
 
 📷 **Imagen -- Validación y shares**\
-![](media/image15.png){width="5.905555555555556in" height="2.9375in"}
+
+<img width="1186" height="523" alt="image" src="https://github.com/user-attachments/assets/e103fe3d-2ac6-4792-a009-9dc85bc94038" />
+
 
 bash
 
@@ -311,7 +326,7 @@ post‑explotación mucho más cómoda.
 **FASE 8 -- ACCESO REMOTO (WinRM) Y user.txt**
 
 📷 **Imagen -- Evil‑WinRM shell**\
-![](media/image16.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1164" height="588" alt="image" src="https://github.com/user-attachments/assets/9447c44e-24a0-4e97-924e-dc26753bfa7c" />
 
 **Comandos**
 
@@ -332,7 +347,8 @@ whoami /all
 - Shell PowerShell interactiva en el DC.
 
 📷 **Imagen -- user.txt**\
-![](media/image17.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1174" height="578" alt="image" src="https://github.com/user-attachments/assets/3be8f8c9-c88e-4967-9343-6964d56a4164" />
+
 
 powershell
 
@@ -349,9 +365,9 @@ de dominio comprometida.
 
 **-- Upload winPEAS y SharpHound**
 
-![](media/image18.png){width="5.905555555555556in"
-height="2.9375in"}![](media/image19.png){width="5.905555555555556in"
-height="2.9375in"}
+<img width="842" height="571" alt="image" src="https://github.com/user-attachments/assets/e2f21cb6-172a-4a0a-aaac-76699c4cb78c" />
+
+<img width="1063" height="593" alt="image" src="https://github.com/user-attachments/assets/772fb898-ac83-4fe7-954f-186425f83862" />
 
 **Comandos**
 
@@ -385,7 +401,8 @@ estas alturas el compromiso ya era muy elevado.
 **FASE 10 -- DUMP DEL DOMINIO (secretsdump / DCSync)**
 
 **secretsdump output**\
-![](media/image20.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1182" height="495" alt="image" src="https://github.com/user-attachments/assets/599be5fd-4eb9-47fb-9af1-dc38270b05d1" />
+
 
 **Comando**
 
@@ -417,7 +434,8 @@ Ticket, Pass‑the‑Hash masivo o despliegue de persistencia avanzada.
 **FASE 11 -- PASS‑THE‑HASH Y root.txt (Administrator)**
 
 📷 **Imagen -- PsExec SYSTEM shell**\
-![](media/image21.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1165" height="494" alt="image" src="https://github.com/user-attachments/assets/8d881955-d715-435c-8294-1f0f21e915fe" />
+
 
 **Comando**
 
@@ -434,7 +452,8 @@ control.nyx/Administrator@controller.control.nyx
 - Creación de servicio remoto y shell con privilegios de SYSTEM.
 
 📷 **Imagen -- root.txt**\
-![](media/image21.png){width="5.905555555555556in" height="2.9375in"}
+<img width="1136" height="517" alt="image" src="https://github.com/user-attachments/assets/06cc3d33-31f0-4de4-8738-2e97ff7dd4f2" />
+
 
 text
 
