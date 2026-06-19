@@ -357,7 +357,8 @@ sistema: **Añadido: cat /etc/passwd \| cut -d: -f1.**
 
 - Monitorear acceso a archivos de sistema desde contexto web.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/7385e902-1d53-4561-b73b-6cecc40bb617" />
+<img width="686" height="563" alt="image" src="https://github.com/user-attachments/assets/73f54f72-531b-4c9f-98a2-2779e746c95a" />
+
 
 
 **5. Escalada de Privilegios: www-data a Webmaster**
@@ -403,8 +404,8 @@ webmaster. **Exploit: sudo -u root /bin/bash.**
 
 - Implementar sudo con timeout y logs detallados (/var/log/auth.log).
 
-><img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/9de1aee5-d1c3-45d1-9915-3fb4d82b2416" />
-}
+
+<img width="717" height="585" alt="image" src="https://github.com/user-attachments/assets/e8dfa7f4-2815-46c8-894b-e0cadf411744" />
 
 **Resumen de Vulnerabilidades**
 
