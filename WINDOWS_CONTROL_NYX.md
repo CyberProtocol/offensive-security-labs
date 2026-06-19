@@ -186,6 +186,8 @@ ataques Kerberos de forma muy dirigida.
 
 <img width="980" height="432" alt="image" src="https://github.com/user-attachments/assets/776951bf-e376-4541-a16c-c26f35080eed" />
 
+
+
 <img width="824" height="490" alt="image" src="https://github.com/user-attachments/assets/a3d977b2-72fe-48bd-9e81-c3dd5c4c61d2" />
 
 
@@ -257,6 +259,8 @@ Esta fue la primera credencial fuerte de dominio que conseguí.
 **-- NetExec SMB con credenciales**
 
 <img width="1159" height="471" alt="image" src="https://github.com/user-attachments/assets/d8560317-9395-49a8-8053-a01826872870" />
+
+
 
 <img width="1170" height="482" alt="image" src="https://github.com/user-attachments/assets/3d871f3b-17a9-4cb4-964c-b10723a80f1a" />
 
@@ -366,6 +370,8 @@ de dominio comprometida.
 **-- Upload winPEAS y SharpHound**
 
 <img width="842" height="571" alt="image" src="https://github.com/user-attachments/assets/e2f21cb6-172a-4a0a-aaac-76699c4cb78c" />
+
+
 
 <img width="1063" height="593" alt="image" src="https://github.com/user-attachments/assets/772fb898-ac83-4fe7-954f-186425f83862" />
 
