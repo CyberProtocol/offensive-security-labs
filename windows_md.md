@@ -626,7 +626,6 @@ compromiso total de la máquina.
 
 
 
-**\[ESPACIO PARA CAPTURA: Tabla resumen vulnerabilidades\]**
 
 ------------------------------------------------------------------------
 
