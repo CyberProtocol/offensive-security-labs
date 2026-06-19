@@ -185,9 +185,10 @@ ataques Kerberos de forma muy dirigida.
 
  **Imagen -- Kerbrute userenum**
 
-<img width="980" height="432" alt="image" src="https://github.com/user-attachments/assets/776951bf-e376-4541-a16c-c26f35080eed" />
+<img width="930" height="589" alt="image" src="https://github.com/user-attachments/assets/c642efd3-2a4c-475a-9570-f2767d4ad2f3" />
 
- Imagen -- Kerbrute userenum
+
+ Imagen -- Kerbrute userenum  
 
 <img width="824" height="490" alt="image" src="https://github.com/user-attachments/assets/a3d977b2-72fe-48bd-9e81-c3dd5c4c61d2" />
 
