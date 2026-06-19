@@ -262,8 +262,6 @@ del sitio.
 <img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/0eb8e392-22cc-4b10-8d12-a9ea87e4042c" />
 
 
-![](media/image9.png){width="5.905555555555556in"
-height="3.3222222222222224in"}
 
 <img width="886" height="498" alt="image" src="https://github.com/user-attachments/assets/8ed6cad8-bec9-4cf9-ba2d-3f7ce9483d5b" />
 
