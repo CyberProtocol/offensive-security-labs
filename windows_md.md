@@ -624,56 +624,7 @@ La reutilización de credenciales ha permitido el acceso directo al
 sistema mediante WinRM con privilegios de administrador, confirmando el
 compromiso total de la máquina.
 
-------------------------------------------------------------------------
 
-**Resumen de Vulnerabilidades**
-
-+--------------------------+--------------------------------------------+-------------------------+
-| **Severidad**            | **Cantidad**                               | **Porcentaje**          |
-+------------+-------------+-------------+---------------+--------------+-------------------------+
-| **Nº**     | **Vulnerabilidad**        | **Severidad** | **Descripción**                        |
-+============+=============+=============+===============+==============+=========================+
-| Crítica                  | 3                                          | 30%                     |
-+--------------------------+--------------------------------------------+-------------------------+
-| Alta                     | 2                                          | 20%                     |
-+--------------------------+--------------------------------------------+-------------------------+
-| Media                    | 3                                          | 30%                     |
-+--------------------------+--------------------------------------------+-------------------------+
-| Baja                     | 1                                          | 10%                     |
-+--------------------------+--------------------------------------------+-------------------------+
-| Informativa              | 1                                          | 10%                     |
-+------------+-------------+-------------+---------------+--------------+-------------------------+
-| 1          | Acceso SMB con            | 🔴 Crítica    | Permite acceso a recursos internos y   |
-|            | credenciales válidas      |               | ejecución remota                       |
-+------------+---------------------------+---------------+----------------------------------------+
-| 2          | Ejecución remota mediante | 🔴 Crítica    | Permite obtener shell en el sistema    |
-|            | SMB (PsExec)              |               |                                        |
-+------------+---------------------------+---------------+----------------------------------------+
-| 3          | Exposición de             | 🔴 Crítica    | Credenciales en texto plano de la base |
-|            | credenciales en           |               | de datos                               |
-|            | wp-config.php             |               |                                        |
-+------------+---------------------------+---------------+----------------------------------------+
-| 4          | Fuerza bruta exitosa en   | 🟠 Alta       | Obtención de credenciales válidas      |
-|            | WordPress                 |               |                                        |
-+------------+---------------------------+---------------+----------------------------------------+
-| 5          | WinRM accesible con       | 🟠 Alta       | Acceso remoto como administrador       |
-|            | credenciales reutilizadas |               |                                        |
-+------------+---------------------------+---------------+----------------------------------------+
-| 6          | Enumeración de usuarios   | 🟡 Media      | Permite identificar usuarios válidos   |
-|            | (API REST/WPScan)         |               |                                        |
-+------------+---------------------------+---------------+----------------------------------------+
-| 7          | Versiones obsoletas       | 🟡 Media      | Vulnerables a exploits conocidos       |
-|            | (WordPress/PHP)           |               |                                        |
-+------------+---------------------------+---------------+----------------------------------------+
-| 8          | Generación de diccionario | 🟡 Media      | Facilita ataques dirigidos             |
-|            | (CeWL)                    |               |                                        |
-+------------+---------------------------+---------------+----------------------------------------+
-| 9          | Exposición de archivos    | 🔵 Baja       | Filtrado de información del sistema    |
-|            | informativos              |               |                                        |
-+------------+---------------------------+---------------+----------------------------------------+
-| 10         | Información de            | ⚪            | Identificación de versiones y          |
-|            | tecnologías (WhatWeb)     | Informativa   | servicios                              |
-+------------+---------------------------+---------------+----------------------------------------+
 
 **\[ESPACIO PARA CAPTURA: Tabla resumen vulnerabilidades\]**
 
