@@ -130,8 +130,9 @@ brecha me indicó claramente que el hardening SMB era insuficiente.
 
 **FASE 3 -- ENUMERACIÓN DNS Y LDAP**
 
- **Imagen -- Consultas dig / LDAP rootDSE**\
-<img width="1181" height="656" alt="image" src="https://github.com/user-attachments/assets/838bd174-dcec-45c6-88cb-27bcfe70d378" />
+ **Imagen -- Consultas dig / LDAP rootDSE**\>
+
+<img width="770" height="562" alt="image" src="https://github.com/user-attachments/assets/c5d519d4-b3de-4bc4-86d3-3c74755adf7e" />
 
 
 **DNS -- Comandos clave**
@@ -186,7 +187,7 @@ ataques Kerberos de forma muy dirigida.
 
 <img width="980" height="432" alt="image" src="https://github.com/user-attachments/assets/776951bf-e376-4541-a16c-c26f35080eed" />
 
-
+ Imagen -- Kerbrute userenum
 
 <img width="824" height="490" alt="image" src="https://github.com/user-attachments/assets/a3d977b2-72fe-48bd-9e81-c3dd5c4c61d2" />
 
@@ -260,7 +261,7 @@ Esta fue la primera credencial fuerte de dominio que conseguí.
 
 <img width="1159" height="471" alt="image" src="https://github.com/user-attachments/assets/d8560317-9395-49a8-8053-a01826872870" />
 
-
+**-- NetExec SMB con credenciales**
 
 <img width="1170" height="482" alt="image" src="https://github.com/user-attachments/assets/3d871f3b-17a9-4cb4-964c-b10723a80f1a" />
 
@@ -371,9 +372,10 @@ de dominio comprometida.
 
 <img width="842" height="571" alt="image" src="https://github.com/user-attachments/assets/e2f21cb6-172a-4a0a-aaac-76699c4cb78c" />
 
+-- Upload winPEAS y SharpHound
 
+<img width="980" height="650" alt="image" src="https://github.com/user-attachments/assets/31cfcc93-6d3b-4373-87c4-0bb2de1786a0" />
 
-<img width="1063" height="593" alt="image" src="https://github.com/user-attachments/assets/772fb898-ac83-4fe7-954f-186425f83862" />
 
 **Comandos**
 
