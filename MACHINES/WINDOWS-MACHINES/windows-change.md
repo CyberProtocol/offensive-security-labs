@@ -129,7 +129,7 @@ FASE 6: Fuerza Bruta y Punto de Entrada (Brecha Inicial)
 Con la lista de usuarios, ejecuté un ataque de fuerza bruta
 contra alfredo vía SMB usando la lista rockyou.txt.
 
-- 🚨 HALLAZGO CRÍTICO: La contraseña era Password1.
+- HALLAZGO CRÍTICO: La contraseña era Password1.
 
 - Impacto: Se obtuvo acceso inicial válido en menos de 25 intentos. Esto
   demostró una política de contraseñas inexistente o mal aplicada
@@ -188,7 +188,7 @@ Para responder a la hipótesis,
 ejecuté BloodHound (vía bloodhound-python) para mapear relaciones de
 confianza en el AD.
 
-- 🚨 HALLAZGO DECISIVO: alfredo tenía el
+-  HALLAZGO DECISIVO: alfredo tenía el
   permiso GenericWrite sobre sysadmin.
 
 - Significado: Esto permite a un usuario estándar modificar atributos
@@ -271,7 +271,7 @@ Mientras WinPEAS profundizaba, identificó una configuración crítica en
 el registro de Windows: AutoLogon habilitado para la
 cuenta administrator.
 
-- 🚨 HALLAZGO CRÍTICO MÁXIMO: La contraseña del administrador del
+-  HALLAZGO CRÍTICO MÁXIMO: La contraseña del administrador del
   dominio (d0m@in_c0ntr0ll3r) estaba almacenada en TEXTO CLARO en el
   registro.
 
@@ -314,7 +314,7 @@ como administrator.
 
 \ Whoami /groups mostrando los grupos privilegiados
 
-\>Confirmación de privilegios máximos (Domain Admin).
+\Confirmación de privilegios máximos (Domain Admin).
 
 FASE 14: Captura del Objetivo Final (Root)
 
@@ -333,7 +333,7 @@ text
 Para evitar que esta cadena de ataque se repita, se recomiendan las
 siguientes mejoras de seguridad, priorizadas por impacto:
 
-🛡️ 1. Higiene de Credenciales (Prioridad Crítica)
+ 1. Higiene de Credenciales (Prioridad Crítica)
 
 - Política de Contraseñas: Implementar una longitud mínima de 14+
   caracteres y usar listas de contraseñas prohibidas (ban lists) para
@@ -347,7 +347,7 @@ siguientes mejoras de seguridad, priorizadas por impacto:
 - LAPS: Implementar LAPS (Local Administrator Password Solution) para
   gestionar contraseñas locales de forma segura y rotativa.
 
-🛡️ 2. Endurecimiento de Active Directory
+ 2. Endurecimiento de Active Directory
 
 - Auditoría de ACLs: Revisar periódicamente permisos delegados
   como GenericWrite, GenericAll o ForceChangePassword. Ningún usuario
@@ -357,7 +357,7 @@ siguientes mejoras de seguridad, priorizadas por impacto:
   para que solo acepte conexiones desde estaciones de administración
   privilegiada (PAWs/Jump Boxes), no desde toda la red.
 
-🛡️ 3. Detección y Monitoreo
+ 3. Detección y Monitoreo
 
 - Alertas de Cambio de Contraseña: Configurar alertas en el SOC para
   el Event ID 4724 (intento de reseteo de contraseña por otro usuario),
