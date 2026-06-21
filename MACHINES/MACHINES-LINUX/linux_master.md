@@ -459,8 +459,6 @@ Nuclei Users → WP Admin → RCE → Sudo Root.**
 
 - Monitorización SIEM.
 
-**\[ESPACIO PARA CAPTURA: Timeline cadena de ataque\]**
-
 **Bibliografía**
 
 - Nmap documentation: [https://nmap.org](https://nmap.org/)
