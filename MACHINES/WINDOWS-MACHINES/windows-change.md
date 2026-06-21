@@ -2,7 +2,7 @@
 
 *Compromiso Total de Active Directory: De Usuario Estándar a Domain
 Admin*
-Estado: ✅ Completado (Root Obtenido)
+Estado: Completado (Root Obtenido)
 
 1\. RESUMEN DE LA OPERACIÓN
 
