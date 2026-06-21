@@ -281,7 +281,8 @@ Se pudieron identificar usuarios válidos del sistema:
 
 - Roldan
 
-<img width="491" height="282" alt="image" src="https://github.com/user-attachments/assets/e4ee0a35-bc42-4860-b892-4b45c50e2fcf" />
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/0cbafa23-5dbe-4523-96a1-c7a487477db5" />
+
 
 
 **Análisis automatizado con Nuclei**\
@@ -304,7 +305,10 @@ El análisis detectó múltiples indicadores de seguridad relevantes:
 - Exposición de archivos informativos (readme/directory listing) ---
   BAJA/INFORMATIVA
 
-<img width="558" height="300" alt="image" src="https://github.com/user-attachments/assets/f6156d94-c7e9-447d-bcef-b2232fcdaf88" />
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/8229344d-5a53-4067-ae37-3d158d9c32ab" />
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/451e7112-bbdd-4440-9b3a-b5c5cb786107" />
+
+
 
 **Impacto de las vulnerabilidades**
 
