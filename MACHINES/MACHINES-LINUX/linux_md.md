@@ -234,9 +234,13 @@ vulnerable revelando:**
 **Impacto técnico**: Obtención directa de credenciales válidas del
 sistema de autenticación WordPress facilitando ataques posteriores.
 
-<img width="886" height="487" alt="image" src="https://github.com/user-attachments/assets/39aaf920-ac59-4600-9cbe-42e47c3d6cdf" />
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/cf3e320b-3356-4cf7-8714-f0d4f62f15d5" />
 
-<img width="886" height="440" alt="image" src="https://github.com/user-attachments/assets/3c36826d-fdcb-4c47-b33e-bcaf60ef8bc4" />
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/9aa2e51b-e316-4550-9c51-60d574b99aad" />
+
+
+
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/41ed49f0-31d0-4fc7-8861-752c8409e110" />
 
 
 
@@ -260,11 +264,12 @@ confirmando http://192.168.0.23/wp-login/.
 plugins maliciosos, subida de archivos PHP y modificación del contenido
 del sitio.
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/0eb8e392-22cc-4b10-8d12-a9ea87e4042c" />
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/d4e5148f-4b44-4aef-8204-6912a2f4713f" />
 
 
 
-<img width="886" height="498" alt="image" src="https://github.com/user-attachments/assets/8ed6cad8-bec9-4cf9-ba2d-3f7ce9483d5b" />
+
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/67782633-f294-428f-ad11-f46ab51f9381" />
 
 
 Tras confirmar acceso administrativo (webmaster: kittykat1) se
