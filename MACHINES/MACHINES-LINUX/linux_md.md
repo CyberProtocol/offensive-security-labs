@@ -211,7 +211,8 @@ vulnerables.
 
 <img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/202c472b-5d08-4e34-904a-54583a18dc9b" />
 
-<img width="886" height="441" alt="image" src="https://github.com/user-attachments/assets/1723773b-4130-428a-9f8b-b0b6c7c11ca2" />
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/d5a24153-ad68-45cc-b649-c1e5668e6770" />
+
 
 
 **EXPLOTACIÓN DE LA WEB**
