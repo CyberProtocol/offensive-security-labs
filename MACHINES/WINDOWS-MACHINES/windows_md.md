@@ -238,8 +238,10 @@ se observó un comportamiento anómalo durante la navegación.
 
 <img width="468" height="282" alt="image" src="https://github.com/user-attachments/assets/31abc063-7028-4fb0-a0f4-0bf601c8342b" />
 
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/92637635-654f-4b61-849b-fae7569925b4" />
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/66accd15-06a5-402b-96e0-71f86ca23886" />
+
+
 
 
 **Análisis automatizado del servicio web**\
@@ -257,7 +259,8 @@ ocultación o restricción.\
 Esto facilita ataques de enumeración y fuerza bruta contra el sistema de
 autenticación.
 
-<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/7ec9b4c8-da31-4504-8202-58cf8e00e276" />
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/9a109ead-e28f-4cc4-afb1-22ada8c41500" />
+
 
 
 **Referencia asociada**\
