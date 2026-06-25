@@ -18,8 +18,8 @@ bash
 
 nmap -sS \--open -sC -sV -n -Pn 10.129.221.157
 
-![](media/image1.png){width="12.595833333333333in"
-height="5.240277777777778in"}
+<img width="1889" height="786" alt="image" src="https://github.com/user-attachments/assets/42756380-a013-452a-9d95-b5f3134bd423" />
+
 
 Recomendaciones:
 
@@ -50,11 +50,11 @@ whatweb http://smarthire.htb
 
 curl -I <http://smarthire.htb>
 
-![](media/image2.png){width="8.720138888888888in"
-height="4.750694444444444in"}
+<img width="1308" height="713" alt="image" src="https://github.com/user-attachments/assets/741f00ee-7262-4a08-a5f8-a591cd0bd011" />
 
-![](media/image3.png){width="8.449095581802275in"
-height="6.21961832895888in"}
+
+<img width="1267" height="933" alt="image" src="https://github.com/user-attachments/assets/ee453949-45bc-4e3b-af7a-85f3238302b1" />
+
 
 Recomendaciones:
 
@@ -86,9 +86,11 @@ ffuf -w
 /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H
 \"Host: FUZZ.smarthire.htb\" -u http://smarthire.htb -fs 0
 
-![](media/image4.png){width="10.520833333333334in" height="3.59375in"}
+<img width="1578" height="539" alt="image" src="https://github.com/user-attachments/assets/3b47d8e4-0683-4c39-91cd-10b024eac038" />
 
-![](media/image5.png){width="12.54375in" height="4.750694444444444in"}
+
+<img width="1882" height="713" alt="image" src="https://github.com/user-attachments/assets/5e32b6aa-8eb9-45c6-b2a2-dac3a716b366" />
+
 
 Recomendaciones:
 
@@ -117,8 +119,8 @@ bash
 
 katana -u http://smarthire.htb
 
-![](media/image6.png){width="4.906944444444444in"
-height="4.177777777777778in"}
+<img width="736" height="627" alt="image" src="https://github.com/user-attachments/assets/7a2d3932-c214-4289-bfe5-bc6b35502b5d" />
+
 
 Recomendaciones:
 
@@ -145,10 +147,9 @@ bash
 
 curl -i http://models.smarthire.htb
 
-\[CAPTURA DEL SUBDOMINIO AQUÍ\]
 
-![](media/image7.png){width="9.866597769028871in"
-height="4.732673884514436in"}
+<img width="1477" height="709" alt="image" src="https://github.com/user-attachments/assets/cc6d8531-216d-49dd-bdb4-d986b6f5865d" />
+
 
 Recomendaciones:
 
@@ -177,11 +178,10 @@ relacionados con secciones orientadas a desarrolladores, como "API
 Reference", aunque no se identificó todavía una funcionalidad claramente
 explotable.
 
-![](media/image8.png){width="12.613616579177602in"
-height="6.050326990376203in"}
+<img width="1889" height="906" alt="image" src="https://github.com/user-attachments/assets/1ca790f0-f025-4355-898c-221ee82472d1" />
 
-![](media/image9.png){width="13.662958223972003in"
-height="6.553661417322835in"}
+<img width="2045" height="981" alt="image" src="https://github.com/user-attachments/assets/01d23ca4-5e85-4fd3-a9ec-9dc113c89d7d" />
+
 
 Recomendaciones:
 
@@ -203,8 +203,8 @@ asociado a la vulnerabilidad CVE-2024-37054, relacionada con la
 deserialización insegura de modelos en MLflow. La versión 2.14.1 aparece
 como una de las afectadas por este problema.
 
-![](media/image10.png){width="12.70704505686789in"
-height="6.095142169728784in"}
+<img width="1904" height="913" alt="image" src="https://github.com/user-attachments/assets/337a2435-76e0-4f2d-8743-af04faead8d4" />
+
 
 Recomendaciones:
 
@@ -232,11 +232,11 @@ bash
 
 python3 exploit.py \--mlflow http://models.smarthire.htb
 
-![](media/image11.png){width="11.22404636920385in"
-height="5.383797025371829in"}
+<img width="1680" height="806" alt="image" src="https://github.com/user-attachments/assets/0600c5a2-5287-4dcd-b3a7-02c72e7627cc" />
 
-![](media/image12.png){width="11.411552930883639in"
-height="5.473737970253718in"}
+
+<img width="1709" height="820" alt="image" src="https://github.com/user-attachments/assets/25dbc7e4-07dc-4da8-8a4f-af37df33a337" />
+
 
 Recomendaciones:
 
@@ -266,8 +266,8 @@ script /dev/null
 
 ls
 
-![](media/image13.png){width="9.157638888888888in"
-height="4.094444444444444in"}
+<img width="1374" height="614" alt="image" src="https://github.com/user-attachments/assets/ede63552-a259-45a0-9e44-a0d6931a38ad" />
+
 
 Recomendaciones:
 
@@ -305,11 +305,10 @@ cat /etc/passwd
 
 sudo -l
 
-![](media/image14.png){width="15.850293088363955in"
-height="7.602852143482065in"}
+<img width="2375" height="1139" alt="image" src="https://github.com/user-attachments/assets/3fadb14c-ed87-4ef4-889a-f571692240d8" />
 
-![](media/image15.png){width="19.979166666666668in"
-height="9.583333333333334in"}
+<img width="2997" height="1438" alt="image" src="https://github.com/user-attachments/assets/3fbddb04-2274-4b08-a05a-848d8f131bca" />
+
 
 Recomendaciones:
 
@@ -337,8 +336,7 @@ bash
 
 cat /opt/tools/mlflow_ctl/mlflowctl.py
 
-![](media/image16.png){width="8.995318241469816in"
-height="8.270588363954506in"}
+<img width="1349" height="1241" alt="image" src="https://github.com/user-attachments/assets/6f383438-d761-43fe-8654-15dca0418aa0" />
 
 Recomendaciones:
 
@@ -373,8 +371,8 @@ id
 
 cd /opt/tools/mlflow_ctl/plugins/
 
-![](media/image17.png){width="11.434722222222222in"
-height="6.070587270341207in"}
+<img width="1715" height="911" alt="image" src="https://github.com/user-attachments/assets/98fe8c8f-e328-4239-804e-87aa753f2bb9" />
+
 
 Recomendaciones:
 
@@ -410,11 +408,11 @@ cat /root/root.txt
 
 cat /home/svcweb/user.txt
 
-![](media/image18.png){width="16.283333333333335in"
-height="0.43529418197725284in"}
+<img width="2443" height="65" alt="image" src="https://github.com/user-attachments/assets/2aa2672a-952e-4521-95ec-15ba2eb6cc2e" />
 
-![](media/image19.png){width="15.765696631671041in"
-height="3.870588363954506in"}
+
+
+<img width="2365" height="581" alt="image" src="https://github.com/user-attachments/assets/072914e5-2405-4992-9bd2-03529e1e5e0c" />
 
 Recomendaciones:
 
