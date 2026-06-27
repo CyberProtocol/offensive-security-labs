@@ -44,7 +44,7 @@ Before proceeding with active attacks, it was necessary to understand the domain
 
 ![Initial domain structure mapping](https://github.com/user-attachments/assets/7dd44797-3c59-44a7-b154-cbf9688192ed)
 
-![Initial domain structure mapping](https://github.com/user-attachments/assets/b5ecce73-40b9-462c-a5c3-e3e696a8d2d7)
+<img width="1040" height="441" alt="image" src="https://github.com/user-attachments/assets/b5ecce73-40b9-462e-ab5c-3e696a8d2d7f" />
 
 ### Phase 4: Anonymous Enumeration Attempts (Failed)
 
