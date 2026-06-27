@@ -1,6 +1,4 @@
-
 Security Audit Report
-
 Objective: System identified as Alpine
 
 Network Connectivity Verification
@@ -25,21 +23,14 @@ Restrict ICMP responses to trusted internal networks.
 Monitor suspicious ICMP requests.
 
 An active scan was performed with Nmap to identify exposed services and possible entry vectors.
+
 Command executed: nmap -sS --open -sC -sV -n -Pn 192.168.0.32
-Main results:
-
-Port Service Version
-
-22/tcp SSH OpenSSH 10.2
-80/tcp HTTP Apache 2.4.66
 
 Main results:
 
-Port Service Version
-
-22/tcp SSH OpenSSH 10.2
-80/tcp HTTP Apache 2.4.66
-
+Port	Service	Version
+22/tcp	SSH	OpenSSH 10.2
+80/tcp	HTTP	Apache 2.4.66
 <img width="1350" height="701" alt="image" src="https://github.com/user-attachments/assets/1c7e2686-3cc9-4854-b9c5-8056e09bb39f" />
 
 Observations:
@@ -55,7 +46,7 @@ Configure a firewall and audit periodically.
 Web Technology Identification
 WhatWeb was used to identify server technologies and guide the audit.
 
-Command executed: whatweb http://alpine.
+Command executed: whatweb http://alpine
 
 <img width="1920" height="955" alt="image" src="https://github.com/user-attachments/assets/ec9550ed-f5af-4df4-bf19-4acfeabb2b31" />
 
@@ -80,19 +71,21 @@ Directory and file fuzzing was performed to discover hidden paths and administra
 
 Commands executed:
 
-ffuf -u http://alpine.nyx/FUZZ -w
-/usr/share/seclists/Discovery/WebContent/raft-small-directories.txt -c
-
+bash
+ffuf -u http://alpine.nyx/FUZZ -w /usr/share/seclists/Discovery/WebContent/raft-small-directories.txt -c
 <img width="1089" height="846" alt="image" src="https://github.com/user-attachments/assets/831d49e0-5a51-47cd-b02c-73ea18bed8b2" />
 
-ffuf -u http://alpine.nyx/FUZZ -w
-/usr/share/seclists/Discovery/WebContent/small-words.txt -c
-
+bash
+ffuf -u http://alpine.nyx/FUZZ -w /usr/share/seclists/Discovery/WebContent/small-words.txt -c
 <img width="983" height="894" alt="image" src="https://github.com/user-attachments/assets/f16132bf-65db-48c0-b1eb-a7c6da18cd9e" />
 
-Observations: - Directories found: /password, /modules, /includes, /cache. - /server-status protected (403).
+Observations:
 
-Reviewed ~/profile.html~ and internal dashboard, with additional sensitive information.
+Directories found: /password, /modules, /includes, /cache.
+
+/server-status protected (403).
+
+Reviewed ~/profile.html and internal dashboard, with additional sensitive information.
 
 Recommendations:
 
@@ -119,9 +112,9 @@ Command executed: ssh developer@alpine.nyx
 
 Observations:
 
-Access as ~developer~ confirmed.
+Access as developer confirmed.
 
-Home directory files (~user.txt~, ~.ssh~) were reviewed and no additional sensitive content was found.
+Home directory files (user.txt, .ssh) were reviewed and no additional sensitive content was found.
 
 <img width="997" height="552" alt="image" src="https://github.com/user-attachments/assets/f589f99f-19ef-42f9-a4fc-2de5ae27dc2b" />
 
@@ -133,21 +126,22 @@ Periodically review remote access.
 
 Process and Permission Review
 Active processes and user permissions were reviewed to evaluate potential privilege escalation vectors.
+
 Commands executed:
 
-ps aux sudo -l
-
+bash
+ps aux
+sudo -l
 ls -la /home/developer /home/sysadmin
-
 <img width="1022" height="579" alt="image" src="https://github.com/user-attachments/assets/0fb52e1b-32c7-4247-b95c-b940cf018d7d" />
 
 Observations:
 
-Identification of active processes and users (~developer~, ~sysadmin~, ~apache~, root).
+Identification of active processes and users (developer, sysadmin, apache, root).
 
 Critical file permissions reviewed, with no additional insecure configurations.
 
-~sudo -l~ discarded due to unavailable password.
+sudo -l discarded due to unavailable password.
 
 Recommendations:
 
@@ -160,17 +154,16 @@ It was identified that the Git repository contained commits with SSH key backups
 
 Commands executed:
 
+bash
 git log --all --pretty=oneline
 git show 02f9a18:id_rsa > ~/id_rsa_sysadmin
 chmod 600 ~/id_rsa_sysadmin
-
 ssh -i ~/id_rsa_sysadmin sysadmin@localhost
-
 Observations:
 
 Git allowed recovery of deleted files from previous commits.
 
-Access tested as ~sysadmin~, without finding additional sensitive information.
+Access tested as sysadmin, without finding additional sensitive information.
 
 <img width="1007" height="669" alt="image" src="https://github.com/user-attachments/assets/2e58fb44-bf92-4134-98b4-ab9197c8d8ab" />
 
@@ -187,7 +180,7 @@ This script contained a line of code that read files from the /root directory an
 
 Although the script itself was not directly modifiable by sysadmin, its behavior was predictable.
 
-~cleanup.sh~ contains instructions to consolidate files from root.
+cleanup.sh contains instructions to consolidate files from root.
 
 <img width="1021" height="752" alt="image" src="https://github.com/user-attachments/assets/e7772520-80a4-49b4-938a-72add00ef609" />
 
