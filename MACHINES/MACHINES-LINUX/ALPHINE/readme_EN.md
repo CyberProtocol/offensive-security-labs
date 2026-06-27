@@ -16,7 +16,7 @@ The audit began with a check of the target machine's availability on the network
 
 - The host responded successfully to ICMP requests.
 - TTL = 64 and low response times confirm that the system is active.
-- Connectivity to other internal hosts was reviewed, but no anomalies were found.
+- Connectivity to other internal hosts was also verified, and no anomalies were identified.
 
 **Recommendations:**
 
@@ -34,18 +34,11 @@ An active scan was performed with Nmap to identify exposed services and possible
 | 22/tcp | SSH | OpenSSH 10.2 |
 | 80/tcp | HTTP | Apache 2.4.66 |
 
-**Main results:**
-
-| Port | Service | Version |
-|---|---|---|
-| 22/tcp | SSH | OpenSSH 10.2 |
-| 80/tcp | HTTP | Apache 2.4.66 |
-
 <img width="1350" height="701" alt="image" src="https://github.com/user-attachments/assets/1c7e2686-3cc9-4854-b9c5-8056e09bb39f" />
 
 **Observations:**
 
-- All known ports and services were reviewed, but **no additional services or obvious vulnerabilities were detected**.
+- All discovered ports and services were reviewed, and no additional services or obvious vulnerabilities were identified.
 
 **Recommendations:**
 
@@ -66,7 +59,7 @@ An active scan was performed with Nmap to identify exposed services and possible
 
 - Web server: Apache 2.4.66 (Unix).
 - Detected technologies: HTML5, scripts, and internal emails.
-- Possible APIs and endpoints were reviewed, but **no sensitive information or hidden resources were found**.
+- Publicly accessible endpoints were reviewed, but no sensitive information or hidden resources were identified.
 
 <img width="1272" height="888" alt="image" src="https://github.com/user-attachments/assets/3defbecc-fc82-46d5-be80-d42589fbd516" />
 
@@ -99,7 +92,7 @@ ffuf -u http://alpine.nyx/FUZZ -w /usr/share/seclists/Discovery/WebContent/small
 
 - Directories found: /password, /modules, /includes, /cache.
 - /server-status protected (403).
-- Reviewed `~/profile.html` and internal dashboard, **with additional sensitive information**.
+- The `~/profile.html` page and the internal dashboard were reviewed, revealing additional sensitive information.
 
 **Recommendations:**
 
@@ -126,7 +119,7 @@ Leaked access credentials were obtained:
 **Observations:**
 
 - Access as `developer` confirmed.
-- Home directory files (`user.txt`, `.ssh`) were reviewed and no additional sensitive content was found.
+- Files within the user's home directory (`user.txt`, `.ssh`) were reviewed, and no additional sensitive information was identified.
 
 <img width="997" height="552" alt="image" src="https://github.com/user-attachments/assets/f589f99f-19ef-42f9-a4fc-2de5ae27dc2b" />
 
@@ -155,7 +148,7 @@ ls -la /home/developer /home/sysadmin
 
 - Identification of active processes and users (`developer`, `sysadmin`, `apache`, `root`).
 - Critical file permissions reviewed, with no additional insecure configurations.
-- `sudo -l` discarded due to unavailable password.
+- The `sudo -l` command could not be executed because the user's password was unavailable.
 
 **Recommendations:**
 
@@ -180,7 +173,7 @@ ssh -i ~/id_rsa_sysadmin sysadmin@localhost
 
 **Observations:**
 
-- Git allowed recovery of deleted files from previous commits.
+- The Git repository allowed recovery of deleted files from previous commits.
 - Access tested as `sysadmin`, without finding additional sensitive information.
 
 <img width="1007" height="669" alt="image" src="https://github.com/user-attachments/assets/2e58fb44-bf92-4134-98b4-ab9197c8d8ab" />
@@ -200,11 +193,11 @@ This script contained a line of code that read files from the `/root` directory 
 
 Although the script itself was not directly modifiable by sysadmin, its behavior was predictable.
 
-- `cleanup.sh` contains instructions to consolidate files from root.
+- The `cleanup.sh` script was found to consolidate files from the `/root` directory into a temporary location.
 
 <img width="1021" height="752" alt="image" src="https://github.com/user-attachments/assets/e7772520-80a4-49b4-938a-72add00ef609" />
 
 **Recommendations:**
 
 - Restrict execution of sensitive scripts.
-- Review logs and permissions of automated scripts.
+- Regularly review the permissions and execution logs of automated scripts.
