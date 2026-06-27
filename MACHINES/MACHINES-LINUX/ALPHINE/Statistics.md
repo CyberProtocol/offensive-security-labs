@@ -1,69 +1,165 @@
-# Performance Statistics & Metrics: Alpine
+nforme de Auditoría de Seguridad
 
-## Machine Overview
+Objetivo: Sistema identificado como Alpine
 
-* **Description:** Linux-based system focused on web enumeration, Git history analysis, and local privilege escalation via misconfigured automation scripts.
-* **Flags Obtained:** User, Root
-* **Core Skills:** Web Enumeration, Git Forensics, SSH Access, Linux Privilege Escalation, Cron Analysis
+Verificación de Conectividad de Red
+Se inició la auditoría con una comprobación de la disponibilidad de la máquina objetivo en la red.
 
-## Effort & Complexity Indicators
+Comando ejecutado: ping 192.168.0.32
 
-* **Platform / Origin:** Vulnyx Lab
-* **Operating System:** Linux
-* **Official Difficulty:** Easy
-* **Perceived Difficulty:** Easy–Medium (requires Git history analysis and privilege escalation chaining)
+image
+Observaciones:
 
----
+El host respondió exitosamente a las solicitudes ICMP.
 
-## Technical Skills Matrix
+El TTL = 64 y tiempos de respuesta bajos confirman que el sistema está activo.
 
-| Attack Phase | Technologies & Techniques | Proficiency |
-| :--- | :--- | :--- |
-| **Reconnaissance** | ICMP probing and port scanning with Nmap | Basic |
-| **Web Enumeration** | WhatWeb fingerprinting and directory fuzzing with ffuf | Intermediate |
-| **Credential Access** | Exposure of credentials via information disclosure | Intermediate |
-| **Initial Access** | SSH access using leaked credentials | Intermediate |
-| **Local Enumeration** | Process inspection and permission analysis | Intermediate |
-| **Credential Recovery** | Git history analysis for exposed SSH private keys | Advanced |
-| **Privilege Escalation** | Abuse of cron-based automation script behavior | Advanced |
+Se revisó la conectividad a otros hosts internos, pero no se encontraron anomalías.
 
----
+Recomendaciones:
 
-## Post-Mortem & Lessons Learned
+Restringir respuestas ICMP a redes internas confiables.
 
-### 1. Core Concepts Mastered
+Monitorizar solicitudes ICMP sospechosas.
 
-* **Git Forensics:** Learned how sensitive data can persist in Git history even after deletion from working directories.
-* **SSH Security:** Reinforced the importance of secure key management and avoiding private key exposure in repositories.
-* **Linux Enumeration:** Improved methodology for identifying users, processes, and privilege escalation vectors.
-* **Cron Misconfigurations:** Understood how predictable automated tasks can be leveraged for privilege escalation.
-* **Attack Chaining:** Combined information disclosure, credential reuse, and system misconfiguration to achieve full compromise.
+Escaneo de Puertos
+Se realizó un escaneo activo con Nmap para identificar servicios expuestos y posibles vectores de entrada. Comando ejecutado: nmap -sS --open -sC -sV -n -Pn 192.168.0.32 Resultados principales:
 
----
+Puerto Servicio Versión
 
-### 2. Challenges Encountered
+22/tcp SSH OpenSSH 10.2 80/tcp HTTP Apache 2.4.66
 
-* **Initial Access:** Access was achieved through leaked credentials discovered during enumeration.
-* **Privilege Escalation Path Discovery:** Required analysis of scripts executed via cron to identify predictable file handling behavior.
+image
+Observaciones:
 
-* **Key Takeaway:** Sensitive information stored in version control systems and poorly designed automation tasks can significantly reduce system security.
+Se revisaron todos los puertos y servicios conocidos, pero no se detectaron servicios adicionales ni vulnerabilidades evidentes.
+Recomendaciones:
 
----
+Limitar los puertos abiertos.
 
-### 3. Defensive Perspective
+Configurar firewall y auditar periódicamente.
 
-* Prevent storage of private keys or secrets in Git repositories.
-* Implement secret scanning tools (e.g., Git hooks or CI validation).
-* Restrict access to sensitive automation scripts in `/opt` and root-owned directories.
-* Audit cron jobs and scheduled tasks regularly.
-* Apply strict file permission policies across system scripts.
-* Monitor for unauthorized access to backup or temporary directories.
+Identificación de Tecnologías Web
+Se utilizó WhatWeb para identificar tecnologías del servidor y orientar la auditoría.
 
----
+Comando ejecutado: whatweb http://alpine. image
 
-### 4. Professional Growth
+Observaciones:
 
-* Improved understanding of real-world attack chains combining misconfiguration and information disclosure.
-* Strengthened Git reconnaissance skills for penetration testing engagements.
-* Developed a more systematic approach to Linux privilege escalation.
-* Reinforced importance of secure automation design in system administration.
+Servidor web: Apache 2.4.66 (Unix).
+
+Tecnologías detectadas: HTML5, scripts y correos internos.
+
+Se revisaron posibles APIs y endpoints, pero no se encontró información sensible ni recursos ocultos.
+
+image
+Recomendaciones:
+
+Mantener actualizado el stack tecnológico.
+
+Ocultar información sensible en headers y scripts.
+
+Enumeración de Recursos -- Fuzzing
+Se realizó fuzzing de directorios y archivos web para descubrir rutas ocultas y paneles administrativos.
+
+Comandos ejecutados:
+
+ffuf -u http://alpine.nyx/FUZZ -w /usr/share/seclists/Discovery/WebContent/raft-small-directories.txt -c
+
+image
+ffuf -u http://alpine.nyx/FUZZ -w /usr/share/seclists/Discovery/WebContent/small-words.txt -c
+
+image
+Observaciones: • Se encontraron directorios: /password, /modules, /includes, /cache. • /server-status protegido (403).
+
+Revisado /profile.html y dashboard interno, con información sensible adicional.
+Recomendaciones:
+
+Restringir acceso a directorios sensibles.
+
+Deshabilitar listado de directorios.
+
+Monitorizar intentos de enumeración.
+
+Acceso SSH Inicial
+Se obtuvieron credenciales de acceso filtradas:
+
+image
+Usuario: developer
+
+Host: alpine.nyx
+
+Password: SummerVibes2024!
+
+Comando ejecutado: ssh developer@alpine.nyx
+
+image
+Observaciones:
+
+Acceso confirmado a developer.
+
+Se revisaron archivos del home (user.txt, .ssh) y no se encontró contenido sensible adicional.>
+
+image
+Recomendaciones:
+
+Cambiar credenciales predeterminadas.
+
+Revisar accesos remotos periódicamente.
+
+Revisión de Procesos y Permisos
+Se revisaron procesos activos y permisos de usuarios para evaluar posibles vectores de escalamiento. Comandos ejecutados:
+
+ps aux sudo -l
+
+ls -la /home/developer /home/sysadmin
+
+image
+Observaciones:
+
+Identificación de procesos y usuarios activos (developer, sysadmin, apache, root).
+
+Permisos de archivos críticos revisados, sin configuraciones inseguras adicionales.
+
+sudo\ -l descartado por contraseña no disponible.
+
+Recomendaciones:
+
+image
+Monitorizar procesos y sesiones SSH activas.
+Recuperación de Clave SSH vía Git
+Se identificó que el repositorio Git contenía commits con backups de claves SSH.
+
+Comandos ejecutados:
+
+git log --all --pretty=oneline git show 02f9a18:id_rsa > ~/id_rsa_sysadmin chmod 600 ~/id_rsa_sysadmin
+
+ssh -i ~/id_rsa_sysadmin sysadmin@localhost
+
+Observaciones:
+
+Git permitió recuperar archivos borrados de commits anteriores.
+
+Probado acceso como sysadmin, sin encontrar información sensible adicional.
+
+image
+Recomendaciones:
+
+No almacenar claves privadas en repositorios.
+
+Auditar commits y eliminar información sensible.
+
+Acceso a Información Sensible y Escalamiento
+Una vez dentro como sysadmin, se descubrió un script de limpieza automatizado en /opt/scripts/cleanup.sh, que se ejecutaba periódicamente a través de cron.
+
+Este script contenía una línea de código que leía archivos del directorio /root y los escribía en una ubicación temporal.
+
+Aunque el script en sí no era directamente modicable por sysadmin, su comportamiento era predecible.
+
+cleanup.sh contiene instrucciones para consolidar archivos de root.
+image
+Recomendaciones:
+
+Restringir ejecución de scripts sensibles.
+
+Revisar logs y permisos de scripts automatizados.
