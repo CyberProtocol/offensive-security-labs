@@ -1,4 +1,3 @@
-Here is your complete translation into English, preserving the exact structure and all content:
 
 Security Audit Report
 
