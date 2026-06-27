@@ -2,70 +2,149 @@
 
 ## Machine Overview
 
-* **Description:** Linux web application focused on chained exploitation: SQL Injection, credential dumping, file upload abuse, and privilege escalation to root.
-* **Flags Obtained:** User, Root
-* **Core Skills:** Web Enumeration, SQL Injection, Burp Suite, SQLMap, File Upload Bypass, Linux Privilege Escalation
+**Description:** Linux web application focused on authenticated SQL Injection, administrative panel compromise, file upload bypass leading to Remote Code Execution, credential attacks, and Linux privilege escalation to full root access.
+
+**Flags Obtained:** User, Root
+
+**Core Skills:** Web Enumeration, SQL Injection, Burp Suite, SQLMap, Hash Cracking, File Upload Bypass, Reverse Shell, Linux Enumeration, Password Attacks, Linux Privilege Escalation
+
+---
 
 ## Effort & Complexity Indicators
 
-* **Platform / Origin:** Docker Lab
-* **Operating System:** Ubuntu Linux
-* **Official Difficulty:** Medium
-* **Perceived Difficulty:** Medium – Requires chaining multiple vulnerabilities across web and system layers.
+**Platform / Origin:** Docker Lab
+
+**Operating System:** Ubuntu Linux
+
+**Official Difficulty:** Hard
+
+**Perceived Difficulty:** Hard *(requires chaining multiple web vulnerabilities with post-exploitation and privilege escalation).*
 
 ---
 
-## Technical Skills Matrix
+# Technical Skills Matrix
 
-| Attack Phase | Technologies & Techniques | Proficiency |
-| :--- | :--- | :--- |
-| **Reconnaissance** | ICMP probing, Nmap scanning, WhatWeb fingerprinting | Basic |
-| **Web Enumeration** | Directory fuzzing with ffuf, manual application analysis | Intermediate |
-| **Authentication** | Registration and login flow analysis | Intermediate |
-| **SQL Injection** | Time-based SQLi using Burp Suite and SQLMap | Advanced |
-| **Credential Access** | Database extraction and hash cracking | Advanced |
-| **Web Exploitation** | Admin panel compromise and file upload bypass (RCE) | Advanced |
-| **Post-Exploitation** | Shell stabilization and system enumeration | Intermediate |
-| **Privilege Escalation** | Weak credentials and misconfigurations leading to root | Advanced |
-
----
-
-## Post-Mortem & Lessons Learned
-
-### 1. Core Concepts Mastered
-
-* **SQL Injection:** Exploited authenticated SQL Injection to extract sensitive database data.
-* **Credential Security:** Understood impact of weak hashing and offline password cracking.
-* **File Upload Security:** Bypassed weak validation to achieve Remote Code Execution.
-* **Linux Enumeration:** Improved post-exploitation workflow and system reconnaissance.
-* **Privilege Escalation:** Chained multiple weaknesses into full system compromise.
+| Attack Phase         | Technologies & Techniques                                          | Proficiency  |
+| -------------------- | ------------------------------------------------------------------ | ------------ |
+| Reconnaissance       | Nmap, WhatWeb, Service Fingerprinting                              | Basic        |
+| Web Enumeration      | Manual Analysis, FFUF, Burp Suite                                  | Intermediate |
+| Authentication       | User Registration & Login Analysis                                 | Intermediate |
+| SQL Injection        | Time-Based SQL Injection, SQLMap                                   | Advanced     |
+| Credential Access    | Database Dumping, SHA1 Hash Cracking                               | Advanced     |
+| Web Exploitation     | Admin Panel Compromise, File Upload Bypass (RCE)                   | Advanced     |
+| Post Exploitation    | Reverse Shell, TTY Stabilization, Linux Enumeration                | Intermediate |
+| Privilege Escalation | Password Reuse, Local Brute Force, Shadow Enumeration, Root Access | Advanced     |
 
 ---
 
-### 2. Challenges Encountered
+# Post-Mortem & Lessons Learned
 
-* Initial focus on application logic delayed discovery of injection point.
-* File upload restrictions required request manipulation and extension bypass.
-* Privilege escalation required combining credential reuse and system misconfiguration.
+## 1. Core Concepts Mastered
 
-* **Key Takeaway:** Small weaknesses can be chained into full system compromise.
-
----
-
-### 3. Defensive Perspective
-
-* Use prepared statements for all database queries to prevent SQL Injection.
-* Enforce strong password policies and secure hashing (Argon2/bcrypt).
-* Protect admin interfaces with MFA and monitoring.
-* Restrict file uploads using strict allowlists and disable execution in upload directories.
-* Apply least privilege across system and application layers.
-* Monitor outbound connections for reverse shell detection.
+* Authenticated SQL Injection exploitation leading to full database extraction.
+* Password hash extraction and offline cracking.
+* Administrative panel compromise using recovered credentials.
+* File upload bypass techniques to achieve Remote Code Execution.
+* Reverse shell establishment and Linux post-exploitation workflow.
+* Local enumeration and privilege escalation to root.
 
 ---
 
-### 4. Professional Growth
+## 2. Challenges Encountered
 
-* Strengthened understanding of full web-to-root attack chains.
-* Improved ability to pivot between vulnerability classes.
-* Enhanced manual validation skills using Burp Suite.
-* Reinforced importance of input validation at every layer.
+* The SQL Injection was only reachable after authenticating as a standard user.
+* File upload restrictions required manual request manipulation using Burp Suite.
+* Privilege escalation required chaining weak passwords with insecure system permissions.
+
+**Key Takeaway:** Modern web applications often become fully compromised through the combination of several individually manageable weaknesses rather than a single critical vulnerability.
+
+---
+
+## 3. Defensive Perspective & Hardening Recommendations
+
+To remediate the vulnerabilities exploited during this assessment, the following controls should be implemented:
+
+* Replace dynamic SQL queries with prepared statements and parameterized queries.
+* Store passwords using Argon2id or bcrypt instead of legacy hashing algorithms.
+* Enforce strong password policies together with Multi-Factor Authentication (MFA).
+* Restrict file uploads using strict allowlists and disable script execution inside upload directories.
+* Remove unnecessary administrative functionality from low-privileged users.
+* Correct permissions on sensitive files such as `/etc/shadow`.
+* Monitor outbound connections to detect reverse shells.
+* Deploy Web Application Firewall (WAF) and Endpoint Detection & Response (EDR).
+
+---
+
+## 4. Attack Chain Summary
+
+```text
+Nmap
+      ↓
+Apache Web Server
+      ↓
+Manual Enumeration + FFUF
+      ↓
+User Registration
+      ↓
+Authenticated Login
+      ↓
+Time-Based SQL Injection
+      ↓
+SQLMap Database Dump
+      ↓
+Password Hash Extraction
+      ↓
+Hash Cracking
+      ↓
+Administrator Panel Access
+      ↓
+File Upload Bypass
+      ↓
+Remote Code Execution
+      ↓
+Reverse Shell (www-data)
+      ↓
+Linux Enumeration
+      ↓
+User Discovery (luisillo_o)
+      ↓
+Password Brute Force
+      ↓
+User Shell
+      ↓
+/etc/shadow Enumeration
+      ↓
+ROOT
+```
+
+---
+
+# Final Results
+
+Initial access was achieved through an authenticated SQL Injection vulnerability that enabled complete database extraction and recovery of administrative credentials. Administrative access exposed a vulnerable file upload functionality that was bypassed to obtain Remote Code Execution. Local enumeration revealed weak credentials and insecure system permissions, ultimately allowing full root compromise of the Linux server.
+
+---
+
+# Impact Summary
+
+* Full system compromise achieved
+* Authenticated SQL Injection successfully exploited
+* Complete database extraction performed
+* Administrator credentials recovered
+* Administrative panel compromised
+* Remote Code Execution obtained through file upload bypass
+* Interactive reverse shell established
+* Local user credentials compromised
+* Privilege escalation to root completed
+
+---
+
+# Key Takeaways & Professional Growth
+
+* Authenticated functionality frequently contains high-impact vulnerabilities.
+* SQL Injection remains one of the most critical risks for web applications.
+* Weak password policies significantly amplify the impact of database breaches.
+* File upload functionality must strictly validate both file type and execution permissions.
+* Effective Linux enumeration is essential after gaining initial access.
+* Chaining multiple low- and medium-severity vulnerabilities can lead to complete system compromise.
+* This assessment reinforced a full offensive workflow from reconnaissance to root access while strengthening practical experience in web exploitation and Linux privilege escalation.
