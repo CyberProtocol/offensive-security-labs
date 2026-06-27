@@ -1,43 +1,38 @@
-**Informe de Auditoría de Seguridad**
+Security Audit Report
 
-**Objetivo:** Sistema identificado como *Alpine*
+Target: System identified as Alpine
 
-# Verificación de Conectividad de Red 
+Network Connectivity Verification
+The audit began with a basic check of the target machine’s availability on the network.
 
-Se inició la auditoría con una comprobación de la disponibilidad de la
-máquina objetivo en la red.
-
-**Comando ejecutado:** ping 192.168.0.32
+Executed command: ping 192.168.0.32
 
 <img width="1003" height="807" alt="image" src="https://github.com/user-attachments/assets/c96bce33-10ed-41a7-b307-bf6b79f4d125" />
 
 
-**Observaciones:**
+Observations:
 
-- El host respondió exitosamente a las solicitudes ICMP.
+-The host successfully responded to ICMP requests.
 
-- El TTL = 64 y tiempos de respuesta bajos confirman que el sistema está
-  activo.
+-TTL = 64 and low response times confirm that the system is active.
 
-- Se revisó la conectividad a otros hosts internos, pero **no se
-  encontraron anomalías**.
+-Connectivity to other internal hosts was also reviewed, with no anomalies detected.
 
-**Recomendaciones:**
+Recommendations:
 
-- Restringir respuestas ICMP a redes internas confiables.
+-Restrict ICMP responses to trusted internal networks only.
 
-- Monitorizar solicitudes ICMP sospechosas.
+-Monitor for suspicious ICMP requests.
 
-# Escaneo de Puertos 
+Port Scanning
+An active scan was performed using Nmap to identify exposed services and potential entry vectors. Executed command: nmap -sS --open -sC -sV -n -Pn 192.168.0.32
 
-Se realizó un escaneo activo con Nmap para identificar servicios
-expuestos y posibles vectores de entrada. **Comando ejecutado:** nmap
--sS \--open -sC -sV -n -Pn 192.168.0.32 **Resultados principales:**
+Main results:
 
-**Puerto Servicio Versión**
+Port Service Version
 
-22/tcp SSH OpenSSH 10.2 80/tcp HTTP Apache 2.4.66
-
+22/tcp SSH OpenSSH 10.2
+80/tcp HTTP Apache 2.4.66
 <img width="1350" height="701" alt="image" src="https://github.com/user-attachments/assets/1c7e2686-3cc9-4854-b9c5-8056e09bb39f" />
 
 
