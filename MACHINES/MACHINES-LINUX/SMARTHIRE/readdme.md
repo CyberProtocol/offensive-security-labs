@@ -37,9 +37,9 @@ whatweb http://smarthire.htb
 curl -I http://smarthire.htb
 ```
 
-<img width="1308" height="713" alt="image" src="https://github.com/user-attachments/assets/741f00ee-7262-4a08-a5f8-a591cd0dbd011" />
+<img width="1308" height="713" alt="image" src="https://github.com/user-attachments/assets/741f00ee-7262-4a08-a5f8-a591cd0bd011" />
 
-<img width="1267" height="933" alt="image" src="https://github.com/user-attachments/assets/ee453949-45bc-4e3b-af7b-85f3238302b1" />
+<img width="1267" height="933" alt="image" src="https://github.com/user-attachments/assets/ee453949-45bc-4e3b-af7a-85f3238302b1" />
 
 **Recommendations:**
 
