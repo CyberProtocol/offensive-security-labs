@@ -1,62 +1,75 @@
-# # Custom Automation Tool: Deep Scan (escaneo_profundo.py)
+# Offensive Security Labs
 
-This module contains a modular Python script designed to automate the initial reconnaissance and enumeration phases against a target infrastructure. By sequencing multiple industry-standard security tools into a single execution flow, this utility optimizes verification times and ensures no critical asset visibility is omitted.
+## Cybersecurity Offensive Portfolio
 
----
+Welcome to **Offensive Security Labs**, my technical portfolio focused on offensive security, penetration testing, and hands-on analysis of Windows, Linux, and Active Directory environments.
 
-## Technical Features
+This repository documents real lab exercises in a structured and professional way. Each case includes reconnaissance, enumeration, exploitation, privilege escalation, and defensive conclusions, with the goal of showing both technical execution and the ability to analyze and communicate security findings clearly.
 
-*   **Network Pre-flight Validation**: Conducts live-host verification via ICMP echo requests (Ping) to prevent unnecessary scan executions on dead targets.
-*   **Target Flexibility**: Supports both single IP addresses and fully qualified domain names (FQDN) as input variables.
-*   **Intensive Port Auditing**: Integrates with the Nmap API to perform synchronous service version discovery, operating system detection, and default script execution.
-*   **Conditional Web Arsenal Deployment**: Automatically detects the state of TCP port 80. If open, it triggers a sequential web attack surface mapping without manual intervention.
+## What You Will Find Here
 
----
+- Technical reports for Linux and Windows machines.
+- Active Directory and domain compromise scenarios.
+- Scripts for reconnaissance and enumeration.
+- Visual evidence, commands used, and step-by-step analysis.
+- Mitigation guidance and security best practices.
 
-## Automated Tool Integration
+## Project Goal
 
-When an active web server is identified on port 80, the script chains the following tools in succession:
+This repository is designed as a **professional technical portfolio**. It reflects not only practical cybersecurity knowledge, but also methodology, structure, and the ability to explain vulnerabilities and their impact in a clear way.
 
-1.  **WhatWeb**: Fingerprints web technologies, content management systems (CMS), and active server-side libraries.
-2.  **Katana**: Executes an advanced, high-performance web crawling operation up to a depth level of 10 to map hidden paths and endpoints.
-3.  **Curl**: Performs raw HTTP header inspection to check responses, server configurations, and payload sizes.
-4.  **Ffuf**: Runs structured directory and API fuzzing against the target web application root using the `raft-medium-directories.txt` wordlist from SecLists.
+This portfolio is designed for technical teams and cybersecurity recruiters.
 
----
+My goal is to present a portfolio that demonstrates practical experience in:
 
-## System Requirements and Dependencies
+- Reconnaissance and enumeration.
+- Web exploitation.
+- Windows and Linux systems.
+- Active Directory.
+- Privilege escalation.
+- Technical reporting.
+- Basic security automation.
 
-The script is built to run natively on Linux environments (such as Kali Linux). Ensure the following binaries are installed and accessible via the system global PATH:
-*   `nmap`
-*   `whatweb`
-*   `katana`
-*   `curl`
-*   `ffuf`
+## Methodology
 
-### Wordlist Requirements
-The fuzzing engine expects the SecLists discovery directory to be present at the standard path:
-`/usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt`
+Each lab follows a clear workflow:
 
-### Python Dependencies
-Install the required wrapper library using `pip3`. On modern Linux distributions with externally managed environments, use the system packages bypass flag:
+1. Reconnaissance & Discovery.
+2. Enumeration & Attack Surface Mapping.
+3. Vulnerability Analysis.
+4. Exploitation.
+5. Post-Exploitation.
+6. Privilege Escalation.
+7. Reporting & Remediation.
 
-```bash
-sudo apt update && sudo apt install python3-pip -y
-pip3 install python-nmap --break-system-packages
+## Repository Structure
+
+```text
+README.md
+introduccion.md
+automation-scripts/
+MACHINES/
+  ├── MACHINES-LINUX/
+  └── WINDOWS-MACHINES/
 ```
 
----
+## Automation
 
-## Usage
+This repository also includes custom scripts to speed up repetitive reconnaissance tasks and improve consistency during the initial phase of a security assessment.
 
-Execute the script from the terminal with root privileges to allow Nmap raw packet crafting features:
+One example is a deep scan script that combines host validation, port scanning, and web enumeration when an HTTP service is detected.
 
-```bash
-sudo python3 escaneo_profundo.py
-```
+## For Recruiters
 
----
+If you are reviewing this repository, the main idea is to help you quickly understand:
 
-## Legal Disclaimer
+- How I document technical findings.
+- How I reason during a security assessment.
+- How I communicate the impact of a vulnerability.
+- How I transform technical results into clear, actionable conclusions.
 
-This automation tool is designed exclusively for authorized penetration testing, security audits, and educational research within controlled laboratory environments. Unauthorized usage against production systems without explicit written consent is strictly illegal.
+This portfolio is meant to show not only what I can exploit, but also how I work, how I analyze systems, and how I present security findings in a professional way.
+
+## Note
+
+All content in this repository has been developed in controlled, isolated lab environments for educational and professional purposes only.
