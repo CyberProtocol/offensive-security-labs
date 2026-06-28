@@ -1,37 +1,73 @@
-# Modulo de Automatizacion - Escaneo Profundo
+## Automation Module - Deep Scan
 
-Este directorio contiene herramientas en Python desarrolladas para agilizar las fases de reconocimiento y enumeracion inicial durante auditorias de seguridad o resolucion de laboratorios.
-
----
-
-## Script: escaneo_profundo.py
-
-Script automatizado que unifica multiples herramientas de reconocimiento en un solo flujo secuencial. Evita la ejecucion manual de comandos basicos y optimiza el tiempo de respuesta ante puertos web expuestos.
-
-### Flujo de Ejecucion
-
-1. Verificacion de conectividad basica mediante envio de paquetes ICMP (Ping).
-2. Lanzamiento de un escaneo pesado con Nmap para detectar puertos abiertos, servicios, versiones y ejecucion de scripts basicos de reconocimiento.
-3. Analisis del estado del puerto 80 TCP:
-   * Si el puerto esta cerrado, el script finaliza notificando la situacion.
-   * Si el puerto esta abierto, se activa de forma automatica el arsenal de herramientas web.
-
-### Herramientas Web Integradas
-
-* WhatWeb: Analisis e identificacion de tecnologias, gestores de contenido (CMS) y librerias del servidor.
-* Katana: Crawling y mapeo avanzado de rutas, formularios y endpoints con profundidad de nivel 10.
-* Curl: Inspeccion tecnica de cabeceras HTTP y medicion del tamaño de la respuesta del servidor.
-* Ffuf: Fuzzing de directorios y APIs ocultas utilizando el diccionario raft-medium de SecLists.
+This directory contains Python-based tools designed to streamline the reconnaissance and initial enumeration phases during security assessments or lab exercises.
 
 ---
 
-## Requisitos de Instalacion
+## Script: `escaneo_profundo.py`
 
-Para utilizar este script en sistemas como Kali Linux, es necesario contar con Python 3 y la libreria de control de Nmap.
+`escaneo_profundo.py` is an automated reconnaissance script that combines multiple tools into a single sequential workflow. Its purpose is to reduce manual effort, speed up early-stage target profiling, and improve visibility when dealing with exposed web services.
+
+### Execution Flow
+
+1. **Basic connectivity check**
+   - Verifies host availability using ICMP echo requests (`ping`).
+
+2. **Intensive network scan**
+   - Launches a full Nmap scan to identify open ports, running services, service versions, and default scripts.
+   - The script uses `python-nmap`, a Python wrapper that makes it easier to interact with Nmap programmatically [web:11][web:20].
+
+3. **HTTP port validation**
+   - If TCP port 80 is closed, the script stops and reports the condition.
+   - If TCP port 80 is open, the web enumeration module starts automatically.
+
+### Integrated Web Tools
+
+- **WhatWeb**  
+  Identifies technologies, CMS platforms, server-side components, and version information.
+
+- **Katana**  
+  Performs deep web crawling and endpoint discovery. Katana supports recursive crawling, JavaScript parsing, and configurable crawl depth, which makes it suitable for mapping hidden routes and application structure [web:78][web:82].
+
+- **Curl**  
+  Inspects HTTP headers and server responses to quickly validate behavior and response metadata.
+
+- **FFUF**  
+  Performs directory and endpoint fuzzing using the `raft-medium-directories.txt` wordlist from SecLists to discover hidden paths and API routes.
+
+---
+
+## Installation Requirements
+
+To run this script on Linux systems such as Kali, you need Python 3, `python-nmap`, and the external tools used by the automation chain.
 
 ```bash
 sudo apt update && sudo apt install python3-pip -y
 pip3 install python-nmap --break-system-packages
 ```
 
-Ademas, el sistema operativo debe tener instaladas y accesibles en el PATH global las herramientas nativas: nmap, whatweb, katana, curl y ffuf, junto con los diccionarios de SecLists en la ruta especificada por el codigo.
+In addition, the following tools must be installed and available in the global `PATH`:
+
+- `nmap`
+- `whatweb`
+- `katana`
+- `curl`
+- `ffuf`
+
+The SecLists wordlist must also be available at:
+
+```text
+/usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt
+```
+
+---
+
+## Purpose
+
+This module is meant to centralize the first phase of reconnaissance into a single, repeatable workflow. It does not replace manual analysis; instead, it accelerates discovery, standardizes the process, and helps avoid missing exposed assets during the initial assessment.
+Si quieres, te lo puedo dejar también más corto y más “portfolio style” para que encaje mejor con el resto del README.md.
+
+mas el comando este ```bash
+sudo apt update && sudo apt install python3-pip -y
+pip3 install python-nmap --break-system-packages
+```
